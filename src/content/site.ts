@@ -24,7 +24,7 @@ export const primaryNav: NavItem[] = [
         description: "The full Genii intelligence journey.",
       },
       {
-        label: "Gen-Core",
+        label: "Core",
         href: "/products#core",
         description: "Digitise QA & manage quality outputs.",
       },
@@ -87,7 +87,7 @@ export const footer = {
       title: "Products",
       links: [
         { label: "Platform Overview", href: "/products" },
-        { label: "Gen-Core", href: "/products#core" },
+        { label: "Core", href: "/products#core" },
         { label: "Gen-AI Indicate", href: "/products#indicate" },
         { label: "Gen-AI Connect", href: "/products#connect" },
         { label: "Gen-AI Ultra", href: "/products#ultra" },

@@ -313,7 +313,9 @@
   animation: genii-spin-slow 22s linear infinite;
 }
 @utility animate-marquee {
-  animation: genii-marquee 38s linear infinite;
+  /* Duration scaled for the full client roster — keeps scroll speed calm and
+     readable rather than racing through 25 logos. */
+  animation: genii-marquee 90s linear infinite;
 }
 @utility animate-pulse-ring {
   animation: genii-pulse-ring 2.6s ease-out infinite;

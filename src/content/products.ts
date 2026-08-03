@@ -42,7 +42,7 @@ export type ProductTier = {
 export const tiers: ProductTier[] = [
   {
     id: "core",
-    name: "Gen-Core",
+    name: "Core",
     descriptor: "Digital Quality Management System",
     pricing: "R150 / agent / month",
     role: "Digitise QA & manage quality outputs",

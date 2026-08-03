@@ -4,6 +4,7 @@ import {
   Mail,
   MessageCircle,
   FileText,
+  AudioLines,
   Sparkles,
   Users,
   Settings2,
@@ -12,7 +13,15 @@ import {
 } from "lucide-react";
 import { intelligenceVisual as data } from "@/content/home";
 
-const inputIcons = [Phone, MessageSquare, Mail, MessageCircle, FileText, Sparkles];
+const inputIcons = [
+  Phone,
+  MessageSquare,
+  Mail,
+  MessageCircle,
+  FileText,
+  AudioLines,
+  Sparkles,
+];
 const intelIcons = [Users, Settings2, Heart, Building2];
 
 /**
@@ -44,9 +53,9 @@ export function IntelligenceLayer() {
             return (
               <div
                 key={label}
-                className="flex items-center gap-2.5 rounded-xl border border-border/70 bg-background/70 px-3 py-2 text-sm font-medium transition-all duration-150 hover:-translate-y-0.5 hover:border-genii-orange/50 hover:shadow-sm"
+                className="flex items-center gap-2.5 rounded-xl border border-border/70 bg-background/70 px-3 py-2 text-sm font-medium leading-tight transition-all duration-150 hover:-translate-y-0.5 hover:border-genii-orange/50 hover:shadow-sm"
               >
-                <Icon aria-hidden className="size-4 text-genii-orange" />
+                <Icon aria-hidden className="size-4 shrink-0 text-genii-orange" />
                 {label}
               </div>
             );
@@ -73,9 +82,6 @@ export function IntelligenceLayer() {
             <div className="relative z-10 px-6 text-center">
               <p className="text-lg font-bold leading-tight genii-gradient-text">
                 {data.center.title}
-              </p>
-              <p className="mt-2 text-xs leading-snug text-muted-foreground">
-                {data.center.subtitle}
               </p>
             </div>
           </div>

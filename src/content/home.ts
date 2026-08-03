@@ -11,10 +11,17 @@ export const hero = {
 
 // Genii Intelligence Layer visual: Inputs -> Layer -> Intelligence + Action
 export const intelligenceVisual = {
-  inputs: ["Calls", "Chats", "Emails", "WhatsApp", "Transcripts", "AI Outcomes"],
+  inputs: [
+    "Calls",
+    "Chats",
+    "Emails",
+    "WhatsApp",
+    "Transcripts",
+    "Traditional Speech Analytics Outcomes",
+    "AI Outcomes",
+  ],
   center: {
     title: "Genii Intelligence Layer",
-    subtitle: "Governed QA, reporting and workflow in one platform.",
   },
   intelligence: [
     "Agent Intelligence",
@@ -22,13 +29,12 @@ export const intelligenceVisual = {
     "Customer Intelligence",
     "Business Intelligence",
   ],
-  badges: [
-    "Flexible Coverage",
-    "Flexible Design",
-    "Any Language",
-    "QA Operational Management",
-  ],
+  badges: ["Flexible Coverage", "Flexible Design", "Any Language"],
   actions: [
+    {
+      title: "QA Operational Management",
+      copy: "Governed QA, reporting and workflow in one platform.",
+    },
     {
       title: "AI QA Analysis & Root Cause",
       copy: "Explain what happened, why it happened and what to do next.",
@@ -47,7 +53,7 @@ export const intelligenceVisual = {
 export const environmentStrip = {
   heading: "Built to Work Across Your Environment",
   subheading:
-    "Genii fits your current contact-centre environment — no heavy re-platforming required.",
+    "Genii fits your current contact-centre environment, regardless of channel, vertical, language or source platform.",
   items: [
     {
       title: "Any channel",
@@ -196,9 +202,88 @@ export const comparison = {
   ],
 } as const;
 
+// Client logo strip per the Homepage Design Brief (section 9).
+// Brief rule: "Use accurate client logo files; do not approximate or distort logos."
+// To activate a real logo: drop the licensed file into /public/images/clients/
+// and set `logo` to its path. Until then the client name renders as a wordmark
+// placeholder — never a recreated or approximated logo.
+export type Client = {
+  name: string;
+  logo: string | null;
+  /** Display size in CSS px. Assets are stored at 2x for retina. */
+  w?: number;
+  h?: number;
+};
+
+// Assets sourced from the current geniianalytics.com site, then trimmed of dead
+// padding and normalised to a constant optical area (so a square mark like MTN
+// doesn't overpower a long wordmark like Nedbank). Originals kept in
+// public/images/clients/_original/. Never rescale one axis only — it distorts.
 export const trusted = {
   heading: "Trusted Globally",
-  logos: ["MTN", "Wave Mobile Inc.", "Old Mutual", "TIH", "Foodhub"],
+  logos: [
+    // Brief-named clients first.
+    { name: "MTN", logo: "/images/clients/mtn.png", w: 64, h: 64 },
+    { name: "Old Mutual", logo: "/images/clients/old-mutual.png", w: 170, h: 38 },
+    // Remaining roster, as carried on the current site.
+    { name: "Vodacom", logo: "/images/clients/vodacom.png", w: 151, h: 43 },
+    { name: "Absa", logo: "/images/clients/absa.png", w: 64, h: 64 },
+    { name: "Nedbank", logo: "/images/clients/nedbank.png", w: 179, h: 36 },
+    {
+      name: "MultiChoice Africa",
+      logo: "/images/clients/multichoice-africa.png",
+      w: 103,
+      h: 63,
+    },
+    { name: "Huawei", logo: "/images/clients/huawei.png", w: 164, h: 40 },
+    {
+      name: "BMW Financial Services",
+      logo: "/images/clients/bmw-financial-services.png",
+      w: 109,
+      h: 60,
+    },
+    { name: "Santam", logo: "/images/clients/santam.png", w: 132, h: 49 },
+    { name: "AIG", logo: "/images/clients/aig.png", w: 136, h: 48 },
+    {
+      name: "Momentum Health",
+      logo: "/images/clients/momentum-health.png",
+      w: 158,
+      h: 41,
+    },
+    { name: "GEMS", logo: "/images/clients/gems.png", w: 123, h: 53 },
+    {
+      name: "Clientèle Life",
+      logo: "/images/clients/clientele-life.png",
+      w: 150,
+      h: 43,
+    },
+    {
+      name: "Affinity Health",
+      logo: "/images/clients/affinity-health.png",
+      w: 130,
+      h: 50,
+    },
+    { name: "Sasolmed", logo: "/images/clients/sasolmed.png", w: 191, h: 34 },
+    {
+      name: "African Bank",
+      logo: "/images/clients/african-bank.png",
+      w: 193,
+      h: 34,
+    },
+    { name: "Land Rover", logo: "/images/clients/land-rover.png", w: 111, h: 58 },
+    { name: "KFC", logo: "/images/clients/kfc.png", w: 74, h: 64 },
+    { name: "Burger King", logo: "/images/clients/burger-king.png", w: 64, h: 64 },
+    { name: "Spur", logo: "/images/clients/spur.png", w: 113, h: 57 },
+    { name: "WeWork", logo: "/images/clients/wework.png", w: 174, h: 37 },
+    { name: "Afrihost", logo: "/images/clients/afrihost.png", w: 171, h: 38 },
+    { name: "Vuma", logo: "/images/clients/vuma.png", w: 197, h: 33 },
+    { name: "Tracker", logo: "/images/clients/tracker.png", w: 141, h: 46 },
+    { name: "Harambee", logo: "/images/clients/harambee.png", w: 165, h: 39 },
+    // Awaiting assets — brief-named, not on the current site.
+    { name: "Wave Mobile Inc.", logo: null },
+    { name: "TIH", logo: null },
+    { name: "Foodhub", logo: null },
+  ] as Client[],
 } as const;
 
 export const leadForm = {

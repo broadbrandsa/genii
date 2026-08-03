@@ -20,7 +20,7 @@ import { ProductFinalCta } from "@/components/sections/product/product-final-cta
 export const metadata: Metadata = {
   title: "Products — From Automated QA to Root-Cause Intelligence",
   description:
-    "Explore the Genii product journey: Gen-Core, Gen-AI Indicate, Gen-AI Connect and Gen-AI Ultra, plus Genii Discover and Managed Services.",
+    "Explore the Genii product journey: Core, Gen-AI Indicate, Gen-AI Connect and Gen-AI Ultra, plus Genii Discover and Managed Services.",
 };
 
 export default function ProductsPage() {
