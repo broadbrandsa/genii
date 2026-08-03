@@ -1,0 +1,338 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  /* Genii brand palette */
+  --color-genii-red: var(--genii-red);
+  --color-genii-orange: var(--genii-orange);
+  --color-genii-gold: var(--genii-gold);
+  --color-genii-pink: var(--genii-pink);
+  --color-genii-purple: var(--genii-purple);
+  --color-genii-charcoal: var(--genii-charcoal);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Genii brand hex (from brand guidelines) */
+  --genii-red: #ed1b2f;
+  --genii-orange: #f37035;
+  --genii-gold: #fba939;
+  --genii-pink: #ef3d67;
+  --genii-purple: #a7288f;
+  --genii-charcoal: #2d2d2d;
+
+  --background: #ffffff;
+  --foreground: #2d2d2d;
+  --card: #ffffff;
+  --card-foreground: #2d2d2d;
+  --popover: #ffffff;
+  --popover-foreground: #2d2d2d;
+
+  /* Primary = Genii red */
+  --primary: #ed1b2f;
+  --primary-foreground: #ffffff;
+
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: #2d2d2d;
+  --muted: oklch(0.975 0.003 60);
+  --muted-foreground: oklch(0.5 0.01 40);
+  --accent: oklch(0.97 0.02 40);
+  --accent-foreground: #2d2d2d;
+  --destructive: #ed1b2f;
+  --border: oklch(0.922 0.004 60);
+  --input: oklch(0.922 0.004 60);
+  --ring: #f37035;
+  --chart-1: #ed1b2f;
+  --chart-2: #f37035;
+  --chart-3: #fba939;
+  --chart-4: #ef3d67;
+  --chart-5: #a7288f;
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: #2d2d2d;
+  --sidebar-primary: #ed1b2f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: oklch(0.97 0.02 40);
+  --sidebar-accent-foreground: #2d2d2d;
+  --sidebar-border: oklch(0.922 0.004 60);
+  --sidebar-ring: #f37035;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #f5f5f5;
+  --card: #232323;
+  --card-foreground: #f5f5f5;
+  --popover: #232323;
+  --popover-foreground: #f5f5f5;
+  --primary: #ed1b2f;
+  --primary-foreground: #ffffff;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #f5f5f5;
+  --muted: #2a2a2a;
+  --muted-foreground: oklch(0.72 0 0);
+  --accent: #2f2a2a;
+  --accent-foreground: #f5f5f5;
+  --destructive: #ed1b2f;
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: #f37035;
+  --chart-1: #ed1b2f;
+  --chart-2: #f37035;
+  --chart-3: #fba939;
+  --chart-4: #ef3d67;
+  --chart-5: #a7288f;
+  --sidebar: #232323;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #ed1b2f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2f2a2a;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: #f37035;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Warm Genii gradient used on emphasis words + pill CTAs */
+  .genii-gradient {
+    background-image: linear-gradient(
+      95deg,
+      var(--genii-red) 0%,
+      var(--genii-orange) 55%,
+      var(--genii-gold) 100%
+    );
+  }
+  .genii-gradient-text {
+    background-image: linear-gradient(
+      95deg,
+      var(--genii-red) 0%,
+      var(--genii-orange) 60%,
+      var(--genii-gold) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .genii-gradient-spectrum {
+    background-image: linear-gradient(
+      95deg,
+      var(--genii-red) 0%,
+      var(--genii-pink) 30%,
+      var(--genii-orange) 60%,
+      var(--genii-purple) 100%
+    );
+  }
+  /* Soft brand glow for the intelligence-layer visual */
+  .genii-glow {
+    box-shadow:
+      0 0 0 1px rgba(237, 27, 47, 0.08),
+      0 18px 60px -20px rgba(243, 112, 53, 0.45);
+  }
+}
+
+/* Section rhythm helper */
+.section {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion system — micro-interactions & scroll reveals                */
+/* All decorative motion is disabled under prefers-reduced-motion.    */
+/* ------------------------------------------------------------------ */
+
+@keyframes genii-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes genii-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+@keyframes genii-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes genii-gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+@keyframes genii-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes genii-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(243, 112, 53, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(243, 112, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(243, 112, 53, 0);
+  }
+}
+
+@layer components {
+  /* Scroll reveal — toggled by the <Reveal> client component. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Card hover lift — subtle elevation + brand border warmth. */
+  .card-lift {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--genii-orange) 45%, transparent);
+    box-shadow: 0 20px 40px -24px rgba(243, 112, 53, 0.5);
+  }
+
+  /* Animated brand gradient text (slow, subtle sheen). */
+  .genii-gradient-text-anim {
+    background-image: linear-gradient(
+      95deg,
+      var(--genii-red) 0%,
+      var(--genii-orange) 35%,
+      var(--genii-gold) 55%,
+      var(--genii-orange) 75%,
+      var(--genii-red) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: genii-gradient-pan 6s linear infinite alternate;
+  }
+}
+
+@utility animate-float {
+  animation: genii-float 6s ease-in-out infinite;
+}
+@utility animate-spin-slow {
+  animation: genii-spin-slow 22s linear infinite;
+}
+@utility animate-marquee {
+  animation: genii-marquee 38s linear infinite;
+}
+@utility animate-pulse-ring {
+  animation: genii-pulse-ring 2.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .genii-gradient-text-anim {
+    animation: none !important;
+  }
+}
