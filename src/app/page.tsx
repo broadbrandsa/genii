@@ -20,11 +20,19 @@ export default function HomePage() {
           ticker band (dark contrast strip). */}
       <main className="flex-1">
         <Hero />
-        {/* This block used to carry a background → muted fade at its top, to
-            soften the join with a light hero. The hero now grades to black, so
-            that fade would read as a white glow under a black edge; the join is
-            a deliberate dark-to-light break instead. */}
-        <div className="bg-muted/40">
+        {/* The hero grades to solid black, so this block starts on black too and
+            lifts to its own background over the first 18rem. Starting on the
+            hero's exact end colour is what makes the join disappear — a fade
+            toward any other value just moves the hard line down.
+
+            The overlay is first in the DOM and carries no z-index, so the
+            diagram paints over it: the fade darkens the ground behind the orbit
+            without dimming the nodes themselves. */}
+        <div className="relative bg-muted/40">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-black via-black/45 to-transparent"
+          />
           <IntelligenceFlow />
         </div>
         <Ticker items={ticker} />
