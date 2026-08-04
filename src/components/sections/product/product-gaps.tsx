@@ -1,9 +1,9 @@
 import { Container, Section, SectionHeading } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { FeatureCarousel } from "@/components/ui/feature-carousel";
-import { gaps as data } from "@/content/home";
+import { gaps as data } from "@/content/products";
 
-export function Gaps() {
+export function ProductGaps() {
   return (
     <Section id="gaps">
       <Container>

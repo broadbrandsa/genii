@@ -448,3 +448,43 @@ export const productFinalCta = {
 
 export const finalPositioning =
   "Genii helps contact centres move from simple automated QA into performance segmentation and deep root-cause intelligence — giving teams the ability to reduce QA overhead, manage what AI cannot see, understand what drives performance and link interaction intelligence to measurable business impact.";
+
+// "Where QA falls short" carousel — the gaps buyers recognise, each paired
+// with what they actually need.
+export const gaps = {
+  heading: "Where traditional QA falls short",
+  subheading:
+    "The gaps most contact centres live with — and what it takes to close them.",
+  items: [
+    {
+      id: "coverage",
+      label: "QA coverage is too small",
+      title: "Your QA Coverage Is Too Small to Protect the Business",
+      problem:
+        "Manual QA reviews a fraction of interactions. Risk, non-adherence, and poor behaviours go undetected until impact is visible.",
+      need: "Scaled visibility across interactions, without sacrificing accuracy, trust, or governance.",
+      image: "/images/qa-coverage-too-small.webp",
+      icon: "EyeOff",
+    },
+    {
+      id: "why",
+      label: "What happened, not why",
+      title: "You Can See What Happened, Not Why It Happened",
+      problem:
+        "Analytics tell you a step was missed or a score dropped. They don't explain what caused it.",
+      need: "Behavioural and contextual intelligence that explains decisions, effort, hesitation, and breakdowns inside real conversations.",
+      image: "/images/see-what-not-why.webp",
+      icon: "HelpCircle",
+    },
+    {
+      id: "signals",
+      label: "Signals, not solutions",
+      title: "Speech Analytics Generates Signals, Not Solutions",
+      problem:
+        "Topics and keywords are detected. But teams struggle to turn outputs into improvement.",
+      need: "A way to connect speech analytics signals to behaviour, process, and outcomes so intelligence drives change.",
+      image: "/images/speech-analytics-signals.webp",
+      icon: "Radio",
+    },
+  ],
+} as const;

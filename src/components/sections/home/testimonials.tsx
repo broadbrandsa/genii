@@ -61,7 +61,7 @@ export function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
-                <blockquote className="font-serif text-2xl leading-[1.35] tracking-tight text-foreground sm:text-3xl sm:leading-[1.3]">
+                <blockquote className="text-2xl font-medium leading-[1.35] tracking-tight text-foreground sm:text-3xl sm:leading-[1.3]">
                   <span
                     aria-hidden
                     className="mr-0.5 align-top text-xl text-muted-foreground/60 sm:text-2xl"

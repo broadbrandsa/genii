@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { ProductsNav } from "@/components/sections/product/products-nav";
 import { ProductHero } from "@/components/sections/product/product-hero";
+import { ProductGaps } from "@/components/sections/product/product-gaps";
 import { ProductEnvironment } from "@/components/sections/product/product-environment";
 import { ProductTiers } from "@/components/sections/product/product-tiers";
 import { ProductStatsBand } from "@/components/sections/product/product-stats-band";
@@ -23,6 +24,9 @@ export default function ProductsPage() {
       <ProductsNav />
       <main className="flex-1">
         <ProductHero />
+        {/* Problem framing first — then the environment reassurance and the
+            products that close those gaps. */}
+        <ProductGaps />
         <ProductEnvironment />
         <ProductTiers />
         <ProductStatsBand />

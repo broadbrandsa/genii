@@ -4,7 +4,6 @@ import { Hero } from "@/components/sections/home/hero";
 import { IntelligenceFlow } from "@/components/sections/home/intelligence-flow";
 import { Ticker } from "@/components/shared/ticker";
 import { ExplainerVideo } from "@/components/sections/home/explainer-video";
-import { Gaps } from "@/components/sections/home/gaps";
 import { EnvironmentStrip } from "@/components/sections/home/environment-strip";
 import { Statement } from "@/components/sections/home/statement";
 import { Comparison } from "@/components/sections/home/comparison";
@@ -22,7 +21,6 @@ export default function HomePage() {
         <Ticker items={ticker} />
         <ExplainerVideo />
         <Trusted />
-        <Gaps />
         <EnvironmentStrip />
         <Statement />
         <Comparison />
