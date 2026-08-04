@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container, Section } from "@/components/shared/section";
 import { CtaButton } from "@/components/shared/cta-button";
 import { HeroHeadline } from "@/components/sections/home/hero-headline";
@@ -8,6 +9,41 @@ import { ctas } from "@/content/site";
 export function Hero() {
   return (
     <Section className="relative overflow-hidden pt-14 pb-10 sm:pt-20">
+      {/* Photographic backdrop. The mask fades the whole composite — photo and
+          scrim together — out toward the bottom, so the hero dissolves into the
+          page background instead of ending on an edge. The scrim sits inside the
+          mask so the photo is never revealed un-dimmed; the headline is dark
+          text, and this shot is busy enough to fight it without one. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, #000 0%, #000 38%, transparent 92%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, #000 0%, #000 38%, transparent 92%)",
+        }}
+      >
+        <Image
+          src="/images/pexels_99-6a71d77b86a1742672ffebc3@2x.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-90"
+        />
+        {/* Black overlay, directly on the photo — deepens it before the scrim
+            lifts it back. */}
+        <div className="absolute inset-0 bg-black/40" />
+        {/* White veil for legibility, balanced against the black above it. These
+            two fight each other: too much of both and the photo flattens to grey
+            (a black/30 + white/70 pass did exactly that). This pair lands the
+            background around 60% luminance — dark enough to read as a deepened
+            photo, light enough for the charcoal body copy to hold contrast.
+            No radial pool: it read as a white blob in the middle of the shot. */}
+        <div className="absolute inset-0 bg-background/55" />
+      </div>
+
       {/* Layered background: dot texture + soft warm wash + brand orbs */}
       <div
         aria-hidden
