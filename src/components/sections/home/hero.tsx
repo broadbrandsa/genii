@@ -9,20 +9,13 @@ import { ctas } from "@/content/site";
 export function Hero() {
   return (
     <Section className="relative overflow-hidden pt-14 pb-10 sm:pt-20">
-      {/* Photographic backdrop. The mask fades the whole composite — photo and
-          scrim together — out toward the bottom, so the hero dissolves into the
-          page background instead of ending on an edge. The scrim sits inside the
-          mask so the photo is never revealed un-dimmed; the headline is dark
-          text, and this shot is busy enough to fight it without one. */}
+      {/* Photographic backdrop, graded to black. An earlier pass veiled it in
+          white so the default dark copy stayed readable; that fought the black
+          overlay and flattened the photo to grey. Grading down instead keeps the
+          shot's contrast — the copy is recoloured for a dark ground below. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
-        style={{
-          maskImage:
-            "linear-gradient(to bottom, #000 0%, #000 38%, transparent 92%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, #000 0%, #000 38%, transparent 92%)",
-        }}
       >
         <Image
           src="/images/pexels_99-6a71d77b86a1742672ffebc3@2x.png"
@@ -30,18 +23,13 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-90"
+          className="object-cover object-center"
         />
-        {/* Black overlay, directly on the photo — deepens it before the scrim
-            lifts it back. */}
-        <div className="absolute inset-0 bg-black/40" />
-        {/* White veil for legibility, balanced against the black above it. These
-            two fight each other: too much of both and the photo flattens to grey
-            (a black/30 + white/70 pass did exactly that). This pair lands the
-            background around 60% luminance — dark enough to read as a deepened
-            photo, light enough for the charcoal body copy to hold contrast.
-            No radial pool: it read as a white blob in the middle of the shot. */}
-        <div className="absolute inset-0 bg-background/55" />
+        {/* Flat black for overall depth and text contrast. */}
+        <div className="absolute inset-0 bg-black/55" />
+        {/* Vertical grade — the fade at the bottom now lands on black rather
+            than dissolving into the white page. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/45 to-black" />
       </div>
 
       {/* Layered background: dot texture + soft warm wash + brand orbs */}
@@ -75,7 +63,8 @@ export function Hero() {
         {/* Hero copy — centred, with the Intelligence Layer visual stacked below */}
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-genii-orange/25 bg-genii-orange/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-genii-red">
+            {/* Light-on-dark: the hero ground is now graded to black. */}
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-pulse-ring rounded-full bg-genii-orange" />
                 <span className="relative inline-flex size-2 rounded-full genii-gradient" />
@@ -85,7 +74,7 @@ export function Hero() {
           </Reveal>
           <HeroHeadline />
           <Reveal delay={160}>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="max-w-2xl text-lg leading-relaxed text-white/85">
               {hero.supporting}
             </p>
           </Reveal>

@@ -10,7 +10,11 @@ import {
   AudioLines,
   Sparkles,
 } from "lucide-react";
-import { OrbitRotation, type OrbitIcon } from "@/components/ui/orbit-rotation";
+import {
+  OrbitRotation,
+  type OrbitIcon,
+  type OrbitNode,
+} from "@/components/ui/orbit-rotation";
 import { intelligenceVisual as data } from "@/content/home";
 
 const inputIcons = [
@@ -24,10 +28,38 @@ const inputIcons = [
 ];
 
 /** Channel names come from content; icons are paired positionally. */
-const orbitIcons: OrbitIcon[] = data.inputs.map((name, i) => ({
+const channelNodes: OrbitIcon[] = data.inputs.map((name, i) => ({
   name,
   Icon: inputIcons[i % inputIcons.length],
 }));
+
+/**
+ * Portraits orbiting alongside the channels — the people behind the
+ * interactions. Decorative only: these are stock headshots, so they carry no
+ * name or role and the component hides them from screen readers.
+ */
+const portraits = [
+  "canvas-41-6a71d95a86a1742672ffeca5",
+  "canvas-41-6a71d95a86a1742672ffeca6",
+  "canvas-41-6a71d95a86a1742672ffeca7",
+  "canvas-41-6a71d95a86a1742672ffeca8",
+  "canvas-41-6a71d95a86a1742672ffeca9",
+].map((id) => ({ id, src: `/images/${id}.png` }));
+
+/**
+ * Interleave channels and portraits so the photos are spread around the rings
+ * rather than bunched on one side. Channels outnumber portraits, so the tail is
+ * channels — better than clustering all five photos together.
+ */
+const orbitNodes: OrbitNode[] = (() => {
+  const out: OrbitNode[] = [];
+  const max = Math.max(channelNodes.length, portraits.length);
+  for (let i = 0; i < max; i++) {
+    if (channelNodes[i]) out.push(channelNodes[i]);
+    if (portraits[i]) out.push(portraits[i]);
+  }
+  return out;
+})();
 
 /**
  * Genii Intelligence Layer visual — every input channel orbiting the hub.
@@ -71,7 +103,7 @@ export function IntelligenceLayer({
         <div className="flex h-[22rem] w-full items-center justify-center overflow-x-clip sm:h-[31rem] lg:h-[35rem]">
           <div className="origin-center scale-[0.62] sm:scale-90 lg:scale-100">
             <OrbitRotation
-              icons={orbitIcons}
+              icons={orbitNodes}
               orbitCount={2}
               innerOrbit={22}
               orbitGap={9}

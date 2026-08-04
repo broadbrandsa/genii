@@ -25,7 +25,7 @@ export function HeroHeadline() {
 
   if (reduceMotion) {
     return (
-      <h1 className="text-4xl font-extrabold leading-[1.14] tracking-tight sm:text-5xl md:text-6xl">
+      <h1 className="text-4xl font-extrabold leading-[1.14] tracking-tight text-white sm:text-5xl md:text-6xl">
         {hero.headline}{" "}
         <span className="genii-gradient-text pb-[0.12em]">{hero.statement}</span>
       </h1>
@@ -35,7 +35,9 @@ export function HeroHeadline() {
   return (
     <h1 className="grid text-4xl font-extrabold leading-[1.14] tracking-tight sm:text-5xl md:text-6xl">
       <motion.span
-        className="[grid-area:1/1] pb-[0.12em]"
+        /* text-white: the hero ground is graded to black, and this phase has no
+           gradient fill of its own to carry it. */
+        className="[grid-area:1/1] pb-[0.12em] text-white"
         initial={{ opacity: 0, y: 16 }}
         animate={
           stage === "first"
