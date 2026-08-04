@@ -145,12 +145,12 @@ export const contactPage = {
   details: [
     { label: "Phone", value: "+27 (0) 21 551 5307", href: "tel:+27215515307" },
     {
-      label: "General enquiries",
+      label: "Email",
       value: "info@geniianalytics.com",
       href: "mailto:info@geniianalytics.com",
     },
     {
-      label: "Sales",
+      label: "Sales Email",
       value: "sam@geniianalytics.com",
       href: "mailto:sam@geniianalytics.com",
     },

@@ -1,59 +1,137 @@
-import { Quote } from "lucide-react";
-import { Container, Section, SectionHeading } from "@/components/shared/section";
-import { Reveal } from "@/components/shared/reveal";
-import { Spotlight } from "@/components/shared/spotlight";
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Container, Section } from "@/components/shared/section";
 import { testimonials as data } from "@/content/home";
+import { cn } from "@/lib/utils";
 
-/** Initials for the avatar chip, e.g. "William Wyngaardt" → "WW". */
-function initials(name: string) {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("");
-}
+const AUTO_PLAY_INTERVAL = 8000;
 
+/**
+ * Minimal editorial testimonial carousel: one large serif pull-quote at a time
+ * with a right-aligned attribution rule, arrows and dot indicators.
+ * Auto-advances, pauses on hover/focus, and holds still under reduced motion.
+ */
 export function Testimonials() {
+  const reduce = useReducedMotion();
+  const items = data.items;
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [dir, setDir] = useState(1);
+
+  const go = useCallback(
+    (next: number, direction: number) => {
+      setDir(direction);
+      setIndex(((next % items.length) + items.length) % items.length);
+    },
+    [items.length],
+  );
+
+  const next = useCallback(() => go(index + 1, 1), [go, index]);
+  const prev = useCallback(() => go(index - 1, -1), [go, index]);
+
+  useEffect(() => {
+    if (paused || reduce) return;
+    const id = setInterval(() => go(index + 1, 1), AUTO_PLAY_INTERVAL);
+    return () => clearInterval(id);
+  }, [go, index, paused, reduce]);
+
+  const active = items[index];
+
   return (
-    <Section id="testimonials" className="bg-muted/40">
+    <Section id="testimonials">
       <Container>
-        <SectionHeading
-          eyebrow="Client stories"
-          title={data.heading}
-          subtitle={data.subheading}
-        />
-        <div className="mt-12 grid gap-4 lg:grid-cols-2">
-          {data.items.map((t, i) => (
-            <Reveal key={t.name} delay={(i % 2) * 90}>
-              <Spotlight
-                as="figure"
-                className="card-lift group flex h-full flex-col rounded-3xl border border-border/60 bg-background p-6 sm:p-7"
+        <div
+          className="mx-auto max-w-3xl"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+        >
+          {/* Quote */}
+          <div className="relative min-h-[15rem] sm:min-h-[13rem]">
+            {/* Keyed remount rather than AnimatePresence: the new quote mounts
+                immediately, so content never waits on an exit animation to
+                finish (which can stall in throttled/background tabs). */}
+              <motion.figure
+                key={active.name}
+                initial={reduce ? false : { opacity: 0, x: dir * 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Quote
-                  aria-hidden
-                  className="size-7 shrink-0 fill-genii-red/10 text-genii-red/40 transition-colors duration-150 group-hover:text-genii-red/60"
-                />
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-foreground/90 sm:text-base">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
+                <blockquote className="font-serif text-2xl leading-[1.35] tracking-tight text-foreground sm:text-3xl sm:leading-[1.3]">
                   <span
                     aria-hidden
-                    className="flex size-10 shrink-0 items-center justify-center rounded-full genii-gradient text-xs font-bold text-white"
+                    className="mr-0.5 align-top text-xl text-muted-foreground/60 sm:text-2xl"
                   >
-                    {initials(t.name)}
+                    &ldquo;
                   </span>
+                  {active.quote}
+                  <span
+                    aria-hidden
+                    className="ml-0.5 align-top text-xl text-muted-foreground/60 sm:text-2xl"
+                  >
+                    &rdquo;
+                  </span>
+                </blockquote>
+                <figcaption className="mt-8 flex items-center justify-end gap-4 text-sm">
+                  <span
+                    aria-hidden
+                    className="h-px w-12 shrink-0 bg-border sm:w-16"
+                  />
                   <span>
-                    <span className="block text-sm font-bold">{t.name}</span>
-                    <span className="block text-xs text-muted-foreground">
-                      {t.role}
+                    <span className="font-semibold text-foreground">
+                      {active.name}
+                    </span>
+                    <span className="text-muted-foreground">
+                      , {active.role}
                     </span>
                   </span>
                 </figcaption>
-              </Spotlight>
-            </Reveal>
-          ))}
+              </motion.figure>
+          </div>
+
+          {/* Controls */}
+          <div className="mt-10 flex items-center justify-between border-t border-border/60 pt-6">
+            <div className="flex items-center gap-2.5" role="tablist" aria-label="Testimonials">
+              {items.map((t, i) => (
+                <button
+                  key={t.name}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={`Testimonial ${i + 1}: ${t.name}`}
+                  onClick={() => go(i, i > index ? 1 : -1)}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    i === index
+                      ? "w-8 genii-gradient"
+                      : "w-1.5 bg-border hover:bg-muted-foreground/40",
+                  )}
+                />
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous testimonial"
+                className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-genii-orange/60 hover:text-genii-red"
+              >
+                <ArrowLeft aria-hidden className="size-4" />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next testimonial"
+                className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-genii-orange/60 hover:text-genii-red"
+              >
+                <ArrowRight aria-hidden className="size-4" />
+              </button>
+            </div>
+          </div>
         </div>
       </Container>
     </Section>

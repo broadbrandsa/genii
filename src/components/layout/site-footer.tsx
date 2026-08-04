@@ -4,6 +4,7 @@ import { FooterCta } from "@/components/layout/footer-cta";
 import { iconMap } from "@/components/shared/icon-map";
 import { footer, site } from "@/content/site";
 import { whyGenii } from "@/content/home";
+import { contactPage } from "@/content/company";
 
 // Credibility strip shown above the closing CTA. The "1B Interactions
 // Analysed" stat is excluded — it headlines the Real Results section.
@@ -60,6 +61,23 @@ export function SiteFooter() {
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {footer.blurb}
             </p>
+            {/* Contact details */}
+            <h3 className="mt-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+              Let&apos;s get in touch
+            </h3>
+            <ul className="mt-3 space-y-1.5">
+              {contactPage.details.map((d) => (
+                <li key={d.value} className="text-sm">
+                  <span className="text-muted-foreground">{d.label}: </span>
+                  <a
+                    href={d.href}
+                    className="font-medium text-foreground/85 transition-colors hover:text-genii-red"
+                  >
+                    {d.value}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
           {footer.columns.map((col) => (
             <div key={col.title}>
