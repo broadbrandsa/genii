@@ -52,7 +52,7 @@ export function SiteHeader() {
     >
       <div
         className={cn(
-          "mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 transition-all duration-300 sm:px-8",
+          "mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 transition-all duration-300 sm:px-8",
           scrolled ? "h-16 py-2" : "h-18 py-3",
         )}
       >

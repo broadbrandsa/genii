@@ -6,18 +6,22 @@ import { footer, site } from "@/content/site";
 import { whyGenii } from "@/content/home";
 import { contactPage } from "@/content/company";
 
-// Credibility strip shown above the closing CTA. The "1B Interactions
+// Credibility strip shown above the closing CTA. The "1B+ Interactions
 // Analysed" stat is excluded — it headlines the Real Results section.
 const credibility = whyGenii.cards.filter(
-  (c) => c.title !== "1B Interactions Analysed",
+  (c) => c.title !== "1B+ Interactions Analysed",
 );
 
-export function SiteFooter() {
+/**
+ * @param showCta  Set false on pages that already carry their own lead form
+ *                 (the homepage), so the closing band isn't a second CTA.
+ */
+export function SiteFooter({ showCta = true }: { showCta?: boolean } = {}) {
   const year = 2026;
   return (
     <footer className="mt-auto border-t border-border/60 bg-muted/40">
       {/* Credibility strip */}
-      <div className="mx-auto w-full max-w-7xl px-5 pt-14 sm:px-8">
+      <div className="mx-auto w-full max-w-6xl px-5 pt-14 sm:px-8">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {credibility.map((card) => {
             const Icon = iconMap[card.icon];
@@ -49,12 +53,14 @@ export function SiteFooter() {
       </div>
 
       {/* Closing CTA band — click a button to reveal the inline form */}
-      <FooterCta
-        heading="From guessing to knowing what truly drives performance."
-        copy="See how Genii turns the interactions you already have into measurable business outcomes."
-      />
+      {showCta && (
+        <FooterCta
+          heading="From guessing to knowing what truly drives performance."
+          copy="See how Genii turns the interactions you already have into measurable business outcomes."
+        />
+      )}
 
-      <div className="mx-auto w-full max-w-7xl px-5 py-14 sm:px-8">
+      <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div className="max-w-sm">
             <Logo />

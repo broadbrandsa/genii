@@ -3,19 +3,14 @@
 import { useState } from "react";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { leadForm } from "@/content/home";
 
 const fieldClass =
   "h-11 w-full rounded-xl border border-border bg-background px-3.5 text-sm outline-none transition focus:border-genii-orange focus:ring-3 focus:ring-genii-orange/20";
 
-const useCases = [
-  "Customer Experience",
-  "Client Retentions",
-  "Sales Performance",
-  "Collections",
-  "Performance Management",
-  "Compliance & Governance",
-  "Other",
-];
+// Single source of truth — shared with the homepage lead form so the two
+// pickers can't drift apart.
+const useCases = leadForm.useCases;
 
 function Field({
   label,

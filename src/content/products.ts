@@ -398,8 +398,10 @@ export const stats = {
 export const proof = {
   heading: "Trusted to turn interaction data into measurable operational intelligence",
   items: [
-    "100+ brands supported",
-    "Over a decade of contact centre intelligence experience",
+    // The numeric proof points (13+ years, 1B+ interactions, 100+ brands) are
+    // carried by the stats band higher up the same page — repeating them here
+    // read as two different claims. This strip covers the qualitative half of
+    // brief section 13: channel breadth, governance and complexity.
     "Works across voice, transcripts, chat, email, WhatsApp and more",
     "Human + AI governance model",
     "Built for complex contact centre environments",
@@ -451,6 +453,10 @@ export const finalPositioning =
 
 // "Where QA falls short" carousel — the gaps buyers recognise, each paired
 // with what they actually need.
+//
+// `label` is the topic chip on the left; `title` is the headline on the card.
+// Both are on screen at once, so the label must NOT be a truncation of the
+// title — keep it a short neutral topic and let the title make the statement.
 export const gaps = {
   heading: "Where traditional QA falls short",
   subheading:
@@ -458,7 +464,7 @@ export const gaps = {
   items: [
     {
       id: "coverage",
-      label: "QA coverage is too small",
+      label: "QA coverage",
       title: "Your QA Coverage Is Too Small to Protect the Business",
       problem:
         "Manual QA reviews a fraction of interactions. Risk, non-adherence, and poor behaviours go undetected until impact is visible.",
@@ -468,7 +474,7 @@ export const gaps = {
     },
     {
       id: "why",
-      label: "What happened, not why",
+      label: "Root cause",
       title: "You Can See What Happened, Not Why It Happened",
       problem:
         "Analytics tell you a step was missed or a score dropped. They don't explain what caused it.",
@@ -478,7 +484,7 @@ export const gaps = {
     },
     {
       id: "signals",
-      label: "Signals, not solutions",
+      label: "Speech analytics",
       title: "Speech Analytics Generates Signals, Not Solutions",
       problem:
         "Topics and keywords are detected. But teams struggle to turn outputs into improvement.",

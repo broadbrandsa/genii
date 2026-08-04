@@ -1,4 +1,4 @@
-import { Check, X, CircleCheck } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { SectionImage } from "@/components/shared/section-image";
@@ -18,7 +18,9 @@ export function Comparison() {
             />
           </Reveal>
 
-          {/* Right — heading, description, benefit bullets */}
+          {/* Right — heading + description only. The benefit bullets that used to
+              sit here restated four of the table rows below almost word for word,
+              so the table is now the single place the contrast is made. */}
           <Reveal delay={120}>
             <Eyebrow>The Genii difference</Eyebrow>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-[2.75rem] md:leading-[1.08]">
@@ -27,17 +29,6 @@ export function Comparison() {
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
               {data.description}
             </p>
-            <ul className="mt-7 flex flex-col gap-3.5">
-              {data.benefits.map((b) => (
-                <li key={b} className="flex items-center gap-3 text-sm font-medium">
-                  <CircleCheck
-                    aria-hidden
-                    className="size-5 shrink-0 text-genii-red"
-                  />
-                  {b}
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </div>
 

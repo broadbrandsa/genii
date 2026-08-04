@@ -65,26 +65,26 @@ export const primaryNav: NavItem[] = [
       {
         group: "Services & Insights",
         label: "Genii Discover",
-        href: "/products/discover",
+        href: "/products#discover",
         description: "Know where to start before deploying.",
       },
       {
         group: "Services & Insights",
         label: "Managed Services",
-        href: "/products/managed-services",
+        href: "/products#managed-services",
         description: "Human QA support & AI exception management.",
       },
       {
         group: "Services & Insights",
         label: "Genii Enable",
-        href: "/products/enable",
+        href: "/products#enable",
         description: "Implementation & adoption support.",
       },
     ],
     quickLinks: [
-      { label: "Compare features", href: "/products/compare" },
-      { label: "How Genii works", href: "/products/compare#how-it-works" },
-      { label: "FAQ", href: "/products/compare#faq" },
+      { label: "Compare features", href: "/products#comparison" },
+      { label: "How Genii works", href: "/products#how-it-works" },
+      { label: "FAQ", href: "/products#faq" },
     ],
   },
   {
@@ -162,7 +162,7 @@ export const ctas = {
   talkToExpert: { label: "Talk to an Expert", href: "/#lead-form" },
   platformDemo: { label: "Platform Demo", href: "/#lead-form" },
   requestDemo: { label: "Request a Demo / Free POV", href: "/#lead-form" },
-  startDiscover: { label: "Start with Discover", href: "/products/discover" },
+  startDiscover: { label: "Start with Discover", href: "/products#discover" },
   findStartingPoint: { label: "Find Your Starting Point", href: "/#lead-form" },
 } as const;
 
@@ -178,8 +178,8 @@ export const footer = {
         { label: "Gen-AI Indicate", href: "/products/indicate" },
         { label: "Gen-AI Connect", href: "/products/connect" },
         { label: "Gen-AI Ultra", href: "/products/ultra" },
-        { label: "Genii Discover", href: "/products/discover" },
-        { label: "Managed Services", href: "/products/managed-services" },
+        { label: "Genii Discover", href: "/products#discover" },
+        { label: "Managed Services", href: "/products#managed-services" },
       ],
     },
     {
@@ -201,9 +201,9 @@ export const footer = {
       links: [
         { label: "Real Results", href: "/#real-results" },
         { label: "Pricing", href: "/products#tiers" },
-        { label: "Feature Comparison", href: "/products/compare" },
-        { label: "How Genii Works", href: "/products/compare#how-it-works" },
-        { label: "FAQ", href: "/products/compare#faq" },
+        { label: "Feature Comparison", href: "/products#comparison" },
+        { label: "How Genii Works", href: "/products#how-it-works" },
+        { label: "FAQ", href: "/products#faq" },
       ],
     },
     {

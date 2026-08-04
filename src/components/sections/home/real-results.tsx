@@ -30,17 +30,20 @@ export function RealResults({
   statRef?: RefObject<HTMLDivElement | null>;
 } = {}) {
   return (
-    <Section id="real-results" className="relative bg-muted/40">
+    <Section id="real-results" className="relative">
       <Container>
         {/* Standalone hero stat — only the number animates. The threading beam
             terminates here (at the 1B figure). */}
         <Reveal className="mb-16 text-center">
           <div ref={statRef} className="inline-block">
-            <p className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-              <span className="genii-gradient-text-anim tabular-nums">
+            {/* The number carries the weight; the label sits under it, smaller. */}
+            <p className="flex flex-col items-center">
+              <span className="genii-gradient-text-anim text-4xl font-extrabold leading-[1.05] tracking-tight tabular-nums sm:text-5xl md:text-6xl">
                 <BillionCounter />
-              </span>{" "}
-              Interactions Analysed
+              </span>
+              <span className="mt-2 text-lg font-semibold tracking-tight text-foreground/80 sm:text-xl md:text-2xl">
+                Interactions Analysed
+              </span>
             </p>
           </div>
         </Reveal>

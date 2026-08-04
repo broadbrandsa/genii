@@ -15,17 +15,26 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
+      {/* Every content section shares one background. The two deliberate
+          exceptions are the hero (its own layered treatment) and the rotating
+          ticker band (dark contrast strip). */}
       <main className="flex-1">
         <Hero />
-        <IntelligenceFlow />
+        <div className="bg-muted/40">
+          <IntelligenceFlow />
+        </div>
         <Ticker items={ticker} />
-        <ExplainerVideo />
-        <Trusted />
-        <EnvironmentStrip />
-        <Statement />
-        <Comparison />
-        <Testimonials />
+        <div className="bg-muted/40">
+          <ExplainerVideo />
+          <Trusted />
+          <EnvironmentStrip />
+          <Statement />
+          <Comparison />
+          <Testimonials />
+        </div>
       </main>
+      {/* Lead capture (brief section 10) is the two-stage form inside the
+          closing CTA band in the footer. */}
       <SiteFooter />
     </>
   );

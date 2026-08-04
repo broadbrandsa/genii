@@ -22,7 +22,7 @@ export const intelligenceVisual = {
   ],
   center: {
     title: "Genii Intelligence Layer",
-    stat: "1B Interactions Analysed",
+    stat: "1B+ Interactions Analysed",
     statSub: "Across industries and verticals.",
   },
   badges: ["Flexible Coverage", "Flexible Design", "Any Language"],
@@ -137,7 +137,7 @@ export const whyGenii = {
       icon: "ShieldCheck",
     },
     {
-      title: "1B Interactions Analysed",
+      title: "1B+ Interactions Analysed",
       copy: "Across industries and verticals.",
       icon: "Database",
     },
@@ -193,7 +193,7 @@ export const discoverCta = {
   heading:
     "Not sure where to start? Discover what's really happening in your contact centre.",
   copy: "Genii Discover delivers a fast, low-effort insight assessment so you can see key issues, root causes and opportunities before you commit.",
-  cta: { label: "Explore Discover", href: "/products/discover" },
+  cta: { label: "Explore Discover", href: "/products#discover" },
 } as const;
 
 // Client testimonials. Quotes and attributions as supplied by Genii.
@@ -233,12 +233,8 @@ export const comparison = {
   heading: "Where Other Providers Stop. We Continue.",
   description:
     "Most providers stop at detection and dashboards. Genii keeps going — to root cause, action and measurable business impact.",
-  benefits: [
-    "Explains the why, not just the what",
-    "Reveals root cause at scale",
-    "Turns insight into action and workflow",
-    "Connects every layer of intelligence",
-  ],
+  // NB: no benefit bullets here. They previously duplicated four of the rows
+  // below almost verbatim, in the same order. The table makes the contrast.
   video: {
     caption: "Watch the Genii explainer",
     youtubeId: "LQtBvp841b4",

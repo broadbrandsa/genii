@@ -15,7 +15,7 @@ const blockIcons: Record<string, LucideIcon> = {
 
 export function Statement() {
   return (
-    <section id="statement" className="relative bg-muted/40">
+    <section id="statement" className="relative">
       <div aria-hidden className="bg-dot-grid absolute inset-0 opacity-40" />
       <div className="relative">
         <ScrollRevealText

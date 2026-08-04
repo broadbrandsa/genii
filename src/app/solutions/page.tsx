@@ -141,7 +141,7 @@ export default function SolutionsPage() {
                 you commit to anything.
               </p>
               <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-                <CtaButton href="/products/discover" size="lg">
+                <CtaButton href="/products#discover" size="lg">
                   Start with Discover
                 </CtaButton>
                 <CtaButton

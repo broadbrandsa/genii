@@ -4,16 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
+// Discover, Managed Services, Enable and Compare are sections of the single
+// product page, so they are anchors. Core/Indicate/Connect/Ultra are their own
+// deep-dive routes.
 const items = [
   { label: "Overview", href: "/products" },
   { label: "Core", href: "/products/core" },
   { label: "Indicate", href: "/products/indicate" },
   { label: "Connect", href: "/products/connect" },
   { label: "Ultra", href: "/products/ultra" },
-  { label: "Discover", href: "/products/discover" },
-  { label: "Managed Services", href: "/products/managed-services" },
-  { label: "Enable", href: "/products/enable" },
-  { label: "Compare", href: "/products/compare" },
+  { label: "Discover", href: "/products#discover" },
+  { label: "Managed Services", href: "/products#managed-services" },
+  { label: "Enable", href: "/products#enable" },
+  { label: "Compare", href: "/products#comparison" },
 ];
 
 /**

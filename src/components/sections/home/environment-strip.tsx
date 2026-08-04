@@ -6,7 +6,7 @@ import { environmentStrip as data } from "@/content/home";
 
 export function EnvironmentStrip() {
   return (
-    <Section className="relative bg-muted/40 !py-16">
+    <Section className="relative !py-16">
       <Container>
         <SectionHeading title={data.heading} subtitle={data.subheading} />
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

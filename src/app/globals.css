@@ -330,6 +330,16 @@
     transform: rotate(360deg);
   }
 }
+/* Used by OrbitRotation. Declared with an explicit `from` because the rings and
+   the counter-rotating icons must share one origin to stay in lockstep. */
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 @keyframes genii-gradient-pan {
   0% {
     background-position: 0% 50%;

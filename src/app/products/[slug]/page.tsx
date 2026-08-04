@@ -236,7 +236,7 @@ export default async function TierPage({
                 </Link>
               ) : (
                 <Link
-                  href="/products/compare"
+                  href="/products#comparison"
                   className="card-lift group flex items-center justify-end gap-4 rounded-3xl border border-border/60 bg-background p-6 text-right"
                 >
                   <div>
