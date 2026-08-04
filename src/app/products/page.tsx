@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { ProductsNav } from "@/components/sections/product/products-nav";
 import { ProductHero } from "@/components/sections/product/product-hero";
-import { ProductGaps } from "@/components/sections/product/product-gaps";
+// ProductGaps ("Where traditional QA falls short") is hidden — see below.
 import { ProductEnvironment } from "@/components/sections/product/product-environment";
 import { ProductTiers } from "@/components/sections/product/product-tiers";
 import { ProductStatsBand } from "@/components/sections/product/product-stats-band";
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
  * The per-tier deep dives at /products/[slug] remain as optional detail, linked
  * from the product cards.
  *
- * Two sections are additions rather than brief items: ProductGaps (problem
- * framing, moved off the homepage) and ProductStatsBand (the headline numbers).
+ * ProductStatsBand (the headline numbers) is an addition rather than a brief
+ * item. ProductGaps was another, and is now hidden.
  */
 export default function ProductsPage() {
   return (
@@ -47,8 +47,9 @@ export default function ProductsPage() {
       <main className="flex-1">
         {/* 1. Hero */}
         <ProductHero />
-        {/* Problem framing before the journey (addition, not a brief section) */}
-        <ProductGaps />
+        {/* "Where traditional QA falls short" (ProductGaps) is hidden. The
+            component and its content are intact — restore by re-adding
+            <ProductGaps /> here and its import above. */}
         {/* 2. Built to work across your environment */}
         <ProductEnvironment />
         {/* 3. Product cards + 4. product journey line */}
