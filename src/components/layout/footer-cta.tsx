@@ -56,7 +56,7 @@ export function FooterCta({
   return (
     <div
       id="lead-form"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-5 pt-6 sm:px-8"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 px-5 pt-14 sm:px-8"
     >
       <div className="relative overflow-hidden rounded-[2rem] genii-gradient px-6 py-10 sm:px-12 sm:py-12">
         <div

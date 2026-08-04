@@ -58,7 +58,7 @@ export function OrbitRotation({
 
   return (
     <div
-      className={cn("relative flex items-center justify-center", className)}
+      className={cn("orbit relative flex items-center justify-center", className)}
     >
       <div className="relative flex items-center justify-center">
         {/* Centre */}
@@ -85,7 +85,10 @@ export function OrbitRotation({
           return (
             <div
               key={orbitIdx}
-              className="absolute rounded-full border border-dashed border-genii-orange/25"
+              /* pointer-events-none matters: each ring is a full square box, so
+                 the outer ring would otherwise sit on top of the inner ring's
+                 icons and swallow their hover. Only the nodes take the pointer. */
+              className="orbit-anim pointer-events-none absolute rounded-full border border-dashed border-genii-orange/25"
               style={{
                 width: diameter,
                 height: diameter,
@@ -110,8 +113,10 @@ export function OrbitRotation({
                       transform: "translate(-50%, -50%)",
                     }}
                   >
-                    {/* Counter-rotation keeps the glyph upright. */}
+                    {/* Counter-rotation keeps the glyph — and its label —
+                        upright as the ring turns. */}
                     <div
+                      className="orbit-anim"
                       style={{
                         animation: reduceMotion
                           ? undefined
@@ -119,15 +124,27 @@ export function OrbitRotation({
                         animationDirection: reduceMotion ? undefined : counter,
                       }}
                     >
-                      <div className="flex size-14 items-center justify-center rounded-full border border-border/70 bg-background shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-genii-orange/60 hover:shadow-md">
-                        <Icon
-                          aria-hidden
-                          className={cn(
-                            iconSizeClasses[size],
-                            "text-genii-orange",
-                          )}
-                        />
-                        <span className="sr-only">{name}</span>
+                      <div
+                        className="orbit-node group pointer-events-auto relative cursor-default"
+                        role="img"
+                        aria-label={name}
+                        tabIndex={0}
+                      >
+                        <div className="flex size-14 items-center justify-center rounded-full border border-border/70 bg-background shadow-sm transition-all duration-150 group-hover:border-genii-orange/60 group-hover:shadow-md group-focus-visible:border-genii-orange/60">
+                          <Icon
+                            aria-hidden
+                            className={cn(
+                              iconSizeClasses[size],
+                              "text-genii-orange",
+                            )}
+                          />
+                        </div>
+                        {/* Label on hover/focus. The ring pauses while a node is
+                            hovered (see .orbit rules in globals.css), so the
+                            label doesn't drift out from under the cursor. */}
+                        <span className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 scale-95 whitespace-nowrap rounded-full bg-genii-charcoal px-2.5 py-1 text-[11px] font-semibold text-white opacity-0 shadow-md transition duration-150 ease-linear group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100">
+                          {name}
+                        </span>
                       </div>
                     </div>
                   </div>

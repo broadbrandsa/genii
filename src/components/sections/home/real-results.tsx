@@ -32,10 +32,18 @@ export function RealResults({
   return (
     <Section id="real-results" className="relative">
       <Container>
-        {/* Standalone hero stat — only the number animates. The threading beam
-            terminates here (at the 1B figure). */}
+        {/* Standalone hero stat — only the number animates. */}
         <Reveal className="mb-16 text-center">
-          <div ref={statRef} className="inline-block">
+          <div className="relative inline-block">
+            {/* The threading beam terminates on this zero-size point rather than
+                on the stat block itself, whose centre sits behind the digits —
+                the line used to run straight through them. A point above the
+                figure keeps the ending correct at every type size. */}
+            <div
+              ref={statRef}
+              aria-hidden
+              className="absolute left-1/2 top-0 size-0 -translate-x-1/2 -translate-y-4"
+            />
             {/* The number carries the weight; the label sits under it, smaller. */}
             <p className="flex flex-col items-center">
               <span className="genii-gradient-text-anim text-4xl font-extrabold leading-[1.05] tracking-tight tabular-nums sm:text-5xl md:text-6xl">

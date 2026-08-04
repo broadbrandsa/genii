@@ -37,8 +37,9 @@ const orbitIcons: OrbitIcon[] = data.inputs.map((name, i) => ({
  * space, and it doesn't depend on measuring node positions, which was fragile
  * whenever the grid reflowed.
  *
- * Channel names can't sit on the orbiting nodes without colliding, so they read
- * as a legend underneath and stay on the nodes for screen readers.
+ * Channel names can't sit on the orbiting nodes without colliding, so each node
+ * reveals its own name on hover or focus. The name is also the node's accessible
+ * label, so it's available without hovering.
  */
 export function IntelligenceLayer({
   centerRef: externalCenterRef,
@@ -63,16 +64,17 @@ export function IntelligenceLayer({
       />
 
       <div className="relative z-10 flex flex-col items-center gap-6">
-        {/* Orbit. The inner ring has to clear the 13rem hub plus half an icon
-            chip, hence 18rem; the outer ring lands at 25rem, so the diagram is
-            scaled down on narrow screens rather than reflowed. */}
-        <div className="flex h-[18rem] w-full items-center justify-center overflow-hidden sm:h-[26rem] lg:h-[29rem]">
+        {/* Orbit. Rings sit well clear of the 13rem hub — 22rem and 31rem — so
+            the diagram is scaled down on narrow screens rather than reflowed.
+            `overflow-x-clip` stops the rings widening the page while leaving the
+            vertical axis visible, so hover labels aren't cut off. */}
+        <div className="flex h-[22rem] w-full items-center justify-center overflow-x-clip sm:h-[31rem] lg:h-[35rem]">
           <div className="origin-center scale-[0.62] sm:scale-90 lg:scale-100">
             <OrbitRotation
               icons={orbitIcons}
               orbitCount={2}
-              innerOrbit={18}
-              orbitGap={7}
+              innerOrbit={22}
+              orbitGap={9}
               centerRef={centerRef}
               center={
                 <div className="relative flex aspect-square w-44 items-center justify-center sm:w-52">
@@ -102,18 +104,6 @@ export function IntelligenceLayer({
             />
           </div>
         </div>
-
-        {/* Channel legend — keeps the input names scannable. */}
-        <ul className="flex flex-wrap items-center justify-center gap-2">
-          {data.inputs.map((label) => (
-            <li
-              key={label}
-              className="rounded-full border border-border/70 bg-background px-3 py-1.5 text-xs font-medium text-foreground/80"
-            >
-              {label}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );

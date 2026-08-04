@@ -1,63 +1,23 @@
 import Link from "next/link";
 import { Logo } from "@/components/shared/logo";
 import { FooterCta } from "@/components/layout/footer-cta";
-import { iconMap } from "@/components/shared/icon-map";
 import { footer, site } from "@/content/site";
-import { whyGenii } from "@/content/home";
+import { leadForm } from "@/content/home";
 import { contactPage } from "@/content/company";
 
-// Credibility strip shown above the closing CTA. The "1B+ Interactions
-// Analysed" stat is excluded — it headlines the Real Results section.
-const credibility = whyGenii.cards.filter(
-  (c) => c.title !== "1B+ Interactions Analysed",
-);
-
 /**
- * @param showCta  Set false on pages that already carry their own lead form
- *                 (the homepage), so the closing band isn't a second CTA.
+ * @param showCta  Set false on pages that already carry their own lead form,
+ *                 so the closing band isn't a second CTA.
  */
 export function SiteFooter({ showCta = true }: { showCta?: boolean } = {}) {
   const year = 2026;
   return (
     <footer className="mt-auto border-t border-border/60 bg-muted/40">
-      {/* Credibility strip */}
-      <div className="mx-auto w-full max-w-6xl px-5 pt-14 sm:px-8">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {credibility.map((card) => {
-            const Icon = iconMap[card.icon];
-            return (
-              <div
-                key={card.title}
-                className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background px-4 py-3.5"
-              >
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-genii-red/10">
-                  {Icon && (
-                    <Icon
-                      aria-hidden
-                      className="size-4 text-genii-red transition-transform duration-150 group-hover:scale-110"
-                    />
-                  )}
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-sm font-bold leading-tight">
-                    {card.title}
-                  </span>
-                  <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
-                    {card.copy}
-                  </span>
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Closing CTA band — click a button to reveal the inline form */}
+      {/* Closing CTA band — click a button to reveal the inline form.
+          Heading and copy are the Homepage Design Brief's section 10 wording,
+          held in content/home.ts so this band and the copy stay in sync. */}
       {showCta && (
-        <FooterCta
-          heading="From guessing to knowing what truly drives performance."
-          copy="See how Genii turns the interactions you already have into measurable business outcomes."
-        />
+        <FooterCta heading={leadForm.heading} copy={leadForm.copy} />
       )}
 
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">

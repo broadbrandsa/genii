@@ -20,7 +20,14 @@ export default function HomePage() {
           ticker band (dark contrast strip). */}
       <main className="flex-1">
         <Hero />
-        <div className="bg-muted/40">
+        {/* The hero sits on bg-background and this block on bg-muted/40, which
+            left a hard line at the join. The overlay fades background → muted
+            across the top of this block so the two sections meet softly. */}
+        <div className="relative bg-muted/40">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent"
+          />
           <IntelligenceFlow />
         </div>
         <Ticker items={ticker} />

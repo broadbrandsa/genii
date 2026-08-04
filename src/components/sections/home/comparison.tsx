@@ -2,7 +2,14 @@ import { Check, X } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { SectionImage } from "@/components/shared/section-image";
-import { comparison as data } from "@/content/home";
+import { iconMap } from "@/components/shared/icon-map";
+import { comparison as data, whyGenii } from "@/content/home";
+
+// Credibility blocks that back up the claim. The "1B+ Interactions Analysed"
+// stat is excluded — it headlines the Real Results section on its own.
+const credibility = whyGenii.cards.filter(
+  (c) => c.title !== "1B+ Interactions Analysed",
+);
 
 export function Comparison() {
   return (
@@ -29,6 +36,37 @@ export function Comparison() {
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
               {data.description}
             </p>
+
+            {/* Credibility blocks — moved here from above the footer CTA, where
+                they sat unrelated to anything. They now back the claim directly. */}
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {credibility.map((card) => {
+                const Icon = iconMap[card.icon];
+                return (
+                  <div
+                    key={card.title}
+                    className="group flex items-start gap-3 rounded-2xl border border-border/60 bg-background px-4 py-3.5"
+                  >
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-genii-red/10">
+                      {Icon && (
+                        <Icon
+                          aria-hidden
+                          className="size-4 text-genii-red transition-transform duration-150 group-hover:scale-110"
+                        />
+                      )}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-sm font-bold leading-tight">
+                        {card.title}
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
+                        {card.copy}
+                      </span>
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </Reveal>
         </div>
 

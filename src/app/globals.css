@@ -330,6 +330,15 @@
     transform: rotate(360deg);
   }
 }
+/* OrbitRotation: hold every ring still while a node is hovered or focused, so
+   its label is readable and the node stays under the cursor. Every animated
+   part pauses together, otherwise the counter-rotation drifts out of phase and
+   the icons end up tilted. */
+.orbit:has(.orbit-node:hover) .orbit-anim,
+.orbit:has(.orbit-node:focus-visible) .orbit-anim {
+  animation-play-state: paused;
+}
+
 /* Used by OrbitRotation. Declared with an explicit `from` because the rings and
    the counter-rotating icons must share one origin to stay in lockstep. */
 @keyframes orbit-spin {
