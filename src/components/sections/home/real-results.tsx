@@ -8,7 +8,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { type RefObject } from "react";
-import { Container, Section, SectionHeading } from "@/components/shared/section";
+import { Container, Section } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { CountUp } from "@/components/shared/count-up";
 import { BillionCounter } from "@/components/shared/billion-counter";
@@ -45,12 +45,13 @@ export function RealResults({
           </div>
         </Reveal>
 
-        <SectionHeading
-          eyebrow="Outcomes, not dashboards"
-          title={data.heading}
-          subtitle={data.subheading}
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal className="mb-12 text-center">
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
+            {data.subheading}
+          </p>
+        </Reveal>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.items.map((item, i) => {
             const Icon = icons[i % icons.length];
             return (

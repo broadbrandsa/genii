@@ -63,7 +63,7 @@ export function ProductDiscover() {
 
           <div className="mt-10 flex flex-col items-start justify-between gap-5 border-t border-border/60 pt-8 md:flex-row md:items-center">
             <p className="max-w-xl text-base font-semibold">{data.outcome}</p>
-            <CtaButton href="/products#discover" size="lg" className="shrink-0">
+            <CtaButton href="/#lead-form" size="lg" className="shrink-0">
               Start with Discover
             </CtaButton>
           </div>

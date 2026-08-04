@@ -1,15 +1,25 @@
 import { Check, X, CircleCheck } from "lucide-react";
 import { Container, Section, Eyebrow } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
+import { SectionImage } from "@/components/shared/section-image";
 import { comparison as data } from "@/content/home";
 
 export function Comparison() {
   return (
     <Section id="comparison">
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
-          {/* Left — heading, description, benefit bullets */}
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+          {/* Left — photo */}
           <Reveal>
+            <SectionImage
+              src="/images/tim-van-der-kuip-CPs2X8JYmS8-unsplash.jpg"
+              alt="A contact-centre agent working with a customer on a headset."
+              aspect="aspect-[4/5]"
+            />
+          </Reveal>
+
+          {/* Right — heading, description, benefit bullets */}
+          <Reveal delay={120}>
             <Eyebrow>The Genii difference</Eyebrow>
             <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-[2.75rem] md:leading-[1.08]">
               {data.heading}
@@ -29,10 +39,11 @@ export function Comparison() {
               ))}
             </ul>
           </Reveal>
+        </div>
 
-          {/* Right — comparison table (Genii column highlighted) */}
-          <Reveal delay={120}>
-            <div className="overflow-hidden rounded-3xl border border-border/60 bg-card">
+        {/* Comparison table, full width beneath (Genii column highlighted) */}
+        <Reveal delay={80} className="mt-14">
+          <div className="overflow-hidden rounded-3xl border border-border/60 bg-card">
               <div className="grid grid-cols-[1.6fr_0.7fr_0.7fr]">
                 {/* header */}
                 <div className="border-b border-border/60" />
@@ -66,10 +77,9 @@ export function Comparison() {
                     </div>
                   </div>
                 ))}
-              </div>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   );

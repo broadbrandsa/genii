@@ -1,24 +1,19 @@
-import { Container, Section, SectionHeading } from "@/components/shared/section";
+import { Container, Section } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { Spotlight } from "@/components/shared/spotlight";
 import { iconMap } from "@/components/shared/icon-map";
 import { whyGenii as data } from "@/content/home";
 
-export function WhyGenii() {
-  const normal = data.cards.filter((_, i) => i !== 4);
-  const featured = data.cards[4]; // "1B Interactions Analysed"
-  const FeaturedIcon = iconMap[featured.icon];
+// The four credibility blocks (the "1B Interactions Analysed" stat now lives in
+// the Real Results section, so it's excluded here).
+const cards = data.cards.filter((c) => c.title !== "1B Interactions Analysed");
 
+export function WhyGenii() {
   return (
     <Section id="why-genii">
       <Container>
-        <SectionHeading
-          eyebrow="Why Genii?"
-          title="Built to be trusted at scale"
-          subtitle="Five reasons contact-centre leaders choose Genii to turn interactions into intelligence."
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
-          {normal.map((card, i) => {
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map((card, i) => {
             const Icon = iconMap[card.icon];
             return (
               <Reveal key={card.title} delay={i * 70}>
@@ -39,32 +34,6 @@ export function WhyGenii() {
               </Reveal>
             );
           })}
-
-          {/* Flagship stat — tall feature tile */}
-          <Reveal
-            delay={120}
-            className="sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-span-2"
-          >
-            <div className="genii-gradient card-lift group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl p-7 text-white">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-white/10 blur-2xl transition-transform duration-300 group-hover:scale-125"
-              />
-              <span className="relative flex size-12 items-center justify-center rounded-2xl bg-white/15">
-                {FeaturedIcon && (
-                  <FeaturedIcon aria-hidden className="size-6 text-white" />
-                )}
-              </span>
-              <div className="relative mt-8">
-                <h3 className="text-4xl font-extrabold leading-none sm:text-5xl">
-                  {featured.title}
-                </h3>
-                <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">
-                  {featured.copy}
-                </p>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </Container>
     </Section>

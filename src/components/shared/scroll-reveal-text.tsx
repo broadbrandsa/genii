@@ -14,12 +14,15 @@ export function ScrollRevealText({
   eyebrow,
   className,
   children,
+  aside,
 }: {
   text: string;
   eyebrow?: string;
   className?: string;
   /** Rendered inside the sticky viewport, beneath the animating text. */
   children?: ReactNode;
+  /** Rendered in a right-hand column beside the text (lg+). */
+  aside?: ReactNode;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -64,13 +67,31 @@ export function ScrollRevealText({
   return (
     <div ref={sectionRef} className={cn("relative h-[200vh]", className)}>
       <div className="sticky top-0 flex min-h-screen flex-col items-center justify-center py-16">
-        <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
+        <div
+          className={cn(
+            "mx-auto w-full px-5 sm:px-8",
+            aside
+              ? "max-w-6xl lg:grid lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12"
+              : "max-w-5xl",
+          )}
+        >
+          <div>
           {eyebrow && (
-            <p className="mb-6 text-center text-xs font-bold uppercase tracking-[0.2em] genii-gradient-text">
+            <p
+              className={cn(
+                "mb-6 text-xs font-bold uppercase tracking-[0.2em] genii-gradient-text",
+                aside ? "text-center lg:text-left" : "text-center",
+              )}
+            >
               {eyebrow}
             </p>
           )}
-          <p className="text-center text-2xl font-bold leading-snug tracking-tight sm:text-4xl md:text-5xl md:leading-[1.12]">
+          <p
+            className={cn(
+              "text-2xl font-bold leading-snug tracking-tight sm:text-4xl md:leading-[1.12]",
+              aside ? "text-center md:text-4xl lg:text-left" : "text-center md:text-5xl",
+            )}
+          >
             {words.map((word, i) => {
               // Each word lights within a small moving window of progress.
               const start = i / words.length;
@@ -94,6 +115,8 @@ export function ScrollRevealText({
             })}
           </p>
           {children && <div className="mt-10 sm:mt-12">{children}</div>}
+          </div>
+          {aside && <div className="mt-10 lg:mt-0">{aside}</div>}
         </div>
       </div>
     </div>

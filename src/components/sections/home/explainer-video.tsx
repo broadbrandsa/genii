@@ -8,7 +8,7 @@ import { comparison as data } from "@/content/home";
  */
 export function ExplainerVideo() {
   return (
-    <section id="explainer" className="py-14 sm:py-20">
+    <section id="explainer" className="pb-6 sm:pb-8">
       <Reveal className="relative mx-auto max-h-[85vh] w-full overflow-hidden">
         <YouTubeEmbed
           id={data.video.youtubeId}

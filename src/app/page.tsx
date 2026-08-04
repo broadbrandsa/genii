@@ -7,8 +7,8 @@ import { ExplainerVideo } from "@/components/sections/home/explainer-video";
 import { EnvironmentStrip } from "@/components/sections/home/environment-strip";
 import { WhyGenii } from "@/components/sections/home/why-genii";
 import { Statement } from "@/components/sections/home/statement";
-import { IntelligenceAction } from "@/components/sections/home/intelligence-action";
 import { Comparison } from "@/components/sections/home/comparison";
+import { Testimonials } from "@/components/sections/home/testimonials";
 import { Trusted } from "@/components/sections/home/trusted";
 import { ticker } from "@/content/home";
 
@@ -21,12 +21,12 @@ export default function HomePage() {
         <IntelligenceFlow />
         <Ticker items={ticker} />
         <ExplainerVideo />
-        <EnvironmentStrip />
-        <WhyGenii />
-        <Statement />
-        <IntelligenceAction />
-        <Comparison />
         <Trusted />
+        <EnvironmentStrip />
+        <Statement />
+        <Comparison />
+        <Testimonials />
+        <WhyGenii />
       </main>
       <SiteFooter />
     </>

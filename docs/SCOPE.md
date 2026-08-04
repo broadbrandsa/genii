@@ -5,7 +5,14 @@
 | Route | Page | Purpose |
 | --- | --- | --- |
 | `/` | **Homepage** | Demand-led. Creates demand and routes buyers. |
-| `/products` | **Product page** | Owns the detailed product journey and comparison. |
+| `/products` | **Platform overview** | Journey-led summary of the four products + services router. |
+| `/products/core` · `/indicate` · `/connect` · `/ultra` | **Product detail pages** | One page per tier: pricing, role, full includes, intelligence focus, journey nav. |
+| `/products/discover` | **Genii Discover** | Standalone insight product. |
+| `/products/managed-services` | **Managed Services** | Human QA support & AI exception management (+ governance). |
+| `/products/enable` | **Genii Enable** | Professional services roll-out. |
+| `/products/compare` | **Compare** | Full feature matrix, intelligence layers, how it works, governance, proof, FAQ. |
+
+Mirrors the per-product IA of the current live site (geniianalytics.com).
 
 ## Homepage sections (per Homepage Design Brief, 17 June 2026)
 

@@ -11,7 +11,7 @@ export function Trusted() {
   const track = [...clients, ...clients];
 
   return (
-    <Section id="trusted" className="!py-20">
+    <Section id="trusted" className="!pt-6 !pb-20">
       <Container>
         <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
           {data.heading}

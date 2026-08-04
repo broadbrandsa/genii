@@ -1,6 +1,7 @@
 import { Users, Settings2, Heart, Building2, type LucideIcon } from "lucide-react";
 import { ScrollRevealText } from "@/components/shared/scroll-reveal-text";
 import { Spotlight } from "@/components/shared/spotlight";
+import { SectionImage } from "@/components/shared/section-image";
 import { statement, intelligenceTypes } from "@/content/home";
 
 // The four intelligence-layer blocks shown beneath the statement.
@@ -17,10 +18,20 @@ export function Statement() {
     <section id="statement" className="relative bg-muted/40">
       <div aria-hidden className="bg-dot-grid absolute inset-0 opacity-40" />
       <div className="relative">
-        <ScrollRevealText eyebrow={statement.eyebrow} text={statement.text}>
+        <ScrollRevealText
+          eyebrow={statement.eyebrow}
+          text={statement.text}
+          aside={
+            <SectionImage
+              src="/images/microsoft-copilot-txZv4HQJRpE-unsplash.jpg"
+              alt="A contact-centre team reviewing customer interaction insights together."
+              aspect="aspect-[4/5]"
+            />
+          }
+        >
           {/* Rendered inside the sticky viewport, beneath the animating text,
               so the blocks stay on screen while the copy reveals. */}
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2">
             {blocks.map((card) => {
               const Icon = blockIcons[card.icon];
               return (

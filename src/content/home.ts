@@ -193,7 +193,40 @@ export const discoverCta = {
   heading:
     "Not sure where to start? Discover what's really happening in your contact centre.",
   copy: "Genii Discover delivers a fast, low-effort insight assessment so you can see key issues, root causes and opportunities before you commit.",
-  cta: { label: "Explore Discover", href: "/products#discover" },
+  cta: { label: "Explore Discover", href: "/products/discover" },
+} as const;
+
+// Client testimonials. Quotes and attributions as supplied by Genii.
+export const testimonials = {
+  heading: "What clients say",
+  subheading:
+    "Contact-centre and business leaders on what changed once they could see what was really driving performance.",
+  items: [
+    {
+      quote:
+        "Genii played a critical role in developing my strategy, while supporting the delivery of Insights which enabled us to deliver on KPIs for the financial year. My team was empowered to achieve positive transformation, performance improvement and financial gain.",
+      name: "William Wyngaardt",
+      role: "Senior Business Improvement Manager",
+    },
+    {
+      quote:
+        "Genii Interaction Intelligence is revolutionising the industry through a unique and very different non-traditional QA model. We are now able extract BI and also analyse specific trends on contact centre agent responses to customers and the use of business processes. We have simple dashboard with very useful insights into our business.",
+      name: "Jacques Jonker",
+      role: "Previous COO",
+    },
+    {
+      quote:
+        "Genii has helped improve my operational performance as we all now have a visual representation from our customer conversations that help understand how our actions affects business overall. It has given my operational leaders confidence in their ability to identify a trend and invest in the right initiatives to create positive change.",
+      name: "Vaneshree Nadasen",
+      role: "Operations Manager",
+    },
+    {
+      quote:
+        "I work with a great supplier who does call analysis for me. They have proven to be an invaluable strategic partner in our efforts to be the best in the industry. Two years ago we were rated 4th according to the SA-CSI surveys and recently we claimed top spot.",
+      name: "Eloise Boesak",
+      role: "Head – Customer Experience",
+    },
+  ],
 } as const;
 
 export const comparison = {
