@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { Logo } from "@/components/shared/logo";
+import { FooterCta } from "@/components/layout/footer-cta";
 import { footer, site } from "@/content/site";
 
 export function SiteFooter() {
   const year = 2026;
   return (
     <footer className="mt-auto border-t border-border/60 bg-muted/40">
+      {/* Closing CTA band — click a button to reveal the inline form */}
+      <FooterCta
+        heading="From guessing to knowing what truly drives performance."
+        copy="See how Genii turns the interactions you already have into measurable business outcomes."
+      />
+
       <div className="mx-auto w-full max-w-7xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="max-w-sm">

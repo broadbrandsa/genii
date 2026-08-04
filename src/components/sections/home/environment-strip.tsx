@@ -1,6 +1,7 @@
 import { Container, Section, SectionHeading } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { iconMap } from "@/components/shared/icon-map";
+import { DiscoverCta } from "@/components/sections/home/discover-cta";
 import { environmentStrip as data } from "@/content/home";
 
 export function EnvironmentStrip() {
@@ -32,6 +33,11 @@ export function EnvironmentStrip() {
               </Reveal>
             );
           })}
+        </div>
+
+        {/* Discover routing banner, nested into this section */}
+        <div className="mt-6">
+          <DiscoverCta />
         </div>
       </Container>
     </Section>

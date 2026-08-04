@@ -7,7 +7,6 @@ export function Trusted() {
   // forbids approximating logos, and a text wordmark beside real logos reads as
   // a gap rather than a brand.
   const clients = data.logos.filter((c) => c.logo);
-  const outstanding = data.logos.filter((c) => !c.logo).map((c) => c.name);
   // Duplicate the set so the marquee track can loop seamlessly.
   const track = [...clients, ...clients];
 
@@ -42,22 +41,12 @@ export function Trusted() {
                 width={client.w ?? 160}
                 height={client.h ?? 40}
                 priority={false}
-                className="shrink-0 opacity-70 transition-opacity duration-150 hover:opacity-100"
+                className="shrink-0"
               />
             );
           })}
         </div>
       </div>
-
-      {outstanding.length > 0 && (
-        <Container>
-          {/* Internal reminder for the build team — remove before go-live once the
-              outstanding brand assets land. See public/images/clients/README.md. */}
-          <p className="mt-8 text-center text-xs text-muted-foreground/70">
-            Awaiting brand assets: {outstanding.join(", ")}.
-          </p>
-        </Container>
-      )}
     </Section>
   );
 }

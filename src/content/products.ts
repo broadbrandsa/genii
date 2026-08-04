@@ -385,6 +385,16 @@ export const governance = {
   ],
 } as const;
 
+export const stats = {
+  heading: "The numbers behind the platform",
+  items: [
+    { value: "13+", label: "Years of interaction intelligence expertise" },
+    { value: "1B+", label: "Interactions analysed across industries" },
+    { value: "100+", label: "Brands supported" },
+    { value: "100%", label: "Custom coverage available" },
+  ],
+} as const;
+
 export const proof = {
   heading: "Trusted to turn interaction data into measurable operational intelligence",
   items: [

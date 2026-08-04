@@ -1,3 +1,6 @@
+"use client";
+
+import { createRef, useMemo, useRef, type RefObject } from "react";
 import {
   Phone,
   MessageSquare,
@@ -6,11 +9,8 @@ import {
   FileText,
   AudioLines,
   Sparkles,
-  Users,
-  Settings2,
-  Heart,
-  Building2,
 } from "lucide-react";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { intelligenceVisual as data } from "@/content/home";
 
 const inputIcons = [
@@ -22,114 +22,109 @@ const inputIcons = [
   AudioLines,
   Sparkles,
 ];
-const intelIcons = [Users, Settings2, Heart, Building2];
 
 /**
  * Genii Intelligence Layer visual.
- * Structure: Inputs -> Genii Intelligence Layer -> Intelligence + Action.
- * Clean linework, subtle brand glow, lighter accents.
+ * Flow: Inputs (top) → Genii Intelligence Layer (centre), connected by animated
+ * brand beams (Magic UI AnimatedBeam) that flow toward the hub. Beams show on
+ * md+; the layout stacks cleanly on smaller screens.
  */
-export function IntelligenceLayer() {
+export function IntelligenceLayer({
+  centerRef: externalCenterRef,
+}: {
+  /** Optional external ref for the hub circle, so a parent can draw a beam
+   *  from it into content that lives outside this component. */
+  centerRef?: RefObject<HTMLDivElement | null>;
+} = {}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const internalCenterRef = useRef<HTMLDivElement>(null);
+  const centerRef = externalCenterRef ?? internalCenterRef;
+  const inputRefs = useMemo(
+    () => data.inputs.map(() => createRef<HTMLDivElement>()),
+    [],
+  );
+
   return (
-    <div className="relative rounded-3xl border border-border/70 bg-card/80 p-5 backdrop-blur genii-glow sm:p-7">
-      {/* soft ambient wash */}
+    <div ref={containerRef} className="relative px-2 py-4 sm:px-4">
+      {/* soft ambient wash behind the hub */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-60"
+        className="pointer-events-none absolute inset-0 opacity-60"
         style={{
           background:
-            "radial-gradient(60% 55% at 50% 0%, rgba(243,112,53,0.10), transparent 70%)",
+            "radial-gradient(40% 35% at 50% 45%, rgba(243,112,53,0.10), transparent 70%)",
         }}
       />
 
-      <div className="relative grid items-center gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)_minmax(0,1fr)]">
-        {/* Inputs */}
-        <div className="flex flex-col gap-2.5">
-          <p className="mb-1 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            Inputs
-          </p>
-          {data.inputs.map((label, i) => {
-            const Icon = inputIcons[i % inputIcons.length];
-            return (
-              <div
-                key={label}
-                className="flex items-center gap-2.5 rounded-xl border border-border/70 bg-background/70 px-3 py-2 text-sm font-medium leading-tight transition-all duration-150 hover:-translate-y-0.5 hover:border-genii-orange/50 hover:shadow-sm"
-              >
-                <Icon aria-hidden className="size-4 shrink-0 text-genii-orange" />
-                {label}
-              </div>
-            );
-          })}
-        </div>
+      {/* Animated beams (md+ only) — behind the nodes. `reverse` on the
+          right-half inputs so every line's light travels toward the hub. */}
+      {inputRefs.map((ref, i) => (
+        <AnimatedBeam
+          key={`in-${i}`}
+          className="hidden md:block"
+          containerRef={containerRef}
+          fromRef={ref}
+          toRef={centerRef}
+          reverse={i > (inputRefs.length - 1) / 2}
+          duration={4 + (i % 3)}
+        />
+      ))}
 
-        {/* Center: Genii Intelligence Layer */}
-        <div className="flex flex-col items-center gap-4">
-          <div
-            aria-hidden
-            className="hidden h-px w-full bg-gradient-to-r from-transparent via-genii-orange/40 to-transparent lg:block"
-          />
-          <div className="relative flex aspect-square w-52 items-center justify-center sm:w-60">
-            <div
-              aria-hidden
-              className="absolute inset-0 rounded-full animate-spin-slow blur-[1px]"
-              style={{
-                background:
-                  "conic-gradient(from 0deg, var(--genii-red), var(--genii-orange), var(--genii-gold), var(--genii-pink), var(--genii-purple), var(--genii-red))",
-              }}
-            />
-            <div className="absolute inset-[5px] rounded-full bg-card" />
-            <div className="absolute inset-[5px] rounded-full genii-gradient opacity-[0.06]" />
-            <div className="relative z-10 px-6 text-center">
-              <p className="text-lg font-bold leading-tight genii-gradient-text">
-                {data.center.title}
-              </p>
-            </div>
-          </div>
-          <div className="grid w-full grid-cols-2 gap-2">
-            {data.intelligence.map((label, i) => {
-              const Icon = intelIcons[i % intelIcons.length];
+      <div className="relative z-10 flex flex-col items-center gap-8">
+        {/* Inputs — top (circular icon nodes) */}
+        <div className="w-full">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-5 sm:gap-x-7">
+            {data.inputs.map((label, i) => {
+              const Icon = inputIcons[i % inputIcons.length];
               return (
                 <div
                   key={label}
-                  className="flex items-center gap-2 rounded-lg border border-border/60 bg-background/70 px-2.5 py-2 text-xs font-semibold"
+                  className="flex w-20 flex-col items-center gap-2 sm:w-24"
                 >
-                  <Icon aria-hidden className="size-3.5 shrink-0 text-genii-red" />
-                  <span className="leading-tight">{label}</span>
+                  <div
+                    ref={inputRefs[i]}
+                    className="z-10 flex size-14 items-center justify-center rounded-full border border-border/70 bg-background shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-genii-orange/60 hover:shadow-md"
+                  >
+                    <Icon aria-hidden className="size-6 text-genii-orange" />
+                  </div>
+                  <span className="text-center text-[11px] font-medium leading-tight text-foreground/80">
+                    {label}
+                  </span>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Intelligence + Action */}
-        <div className="flex flex-col gap-2.5">
-          <p className="mb-1 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            Intelligence + Action
-          </p>
-          {data.actions.map((a) => (
+        {/* Hub — centre */}
+        <div className="flex flex-col items-center">
+          <div
+            ref={centerRef}
+            className="relative flex aspect-square w-44 items-center justify-center sm:w-52"
+          >
+            {/* Glowing shadow halo behind the hub */}
             <div
-              key={a.title}
-              className="rounded-xl border border-border/70 bg-background/70 p-3 transition-all duration-150 hover:translate-x-0.5 hover:border-genii-orange/50 hover:shadow-sm"
-            >
-              <p className="text-sm font-semibold text-genii-red">{a.title}</p>
-              <p className="mt-0.5 text-xs leading-snug text-muted-foreground">
-                {a.copy}
+              aria-hidden
+              className="absolute -inset-3 rounded-full genii-gradient-spectrum blur-2xl animate-halo-pulse"
+            />
+            {/* Animated gradient border ring */}
+            <div
+              aria-hidden
+              className="absolute inset-0 rounded-full animate-spin-slow shadow-[0_0_18px_-8px_rgba(237,27,47,0.35)]"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, var(--genii-red), var(--genii-orange), var(--genii-gold), var(--genii-pink), var(--genii-purple), var(--genii-red))",
+              }}
+            />
+            <div className="absolute inset-[6px] rounded-full bg-card" />
+            <div className="absolute inset-[6px] rounded-full genii-gradient opacity-[0.06]" />
+            <div className="relative z-10 px-5 text-center">
+              <p className="text-base font-bold leading-tight genii-gradient-text sm:text-lg">
+                {data.center.title}
               </p>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-
-      {/* Bottom badges */}
-      <div className="relative mt-6 flex flex-wrap items-center justify-center gap-2 border-t border-border/60 pt-5">
-        {data.badges.map((b) => (
-          <span
-            key={b}
-            className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
-          >
-            {b}
-          </span>
-        ))}
       </div>
     </div>
   );

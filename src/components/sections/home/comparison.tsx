@@ -1,6 +1,5 @@
-import { Check, X } from "lucide-react";
-import { Container, Section, SectionHeading } from "@/components/shared/section";
-import { YouTubeEmbed } from "@/components/shared/youtube-embed";
+import { Check, X, CircleCheck } from "lucide-react";
+import { Container, Section, Eyebrow } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
 import { comparison as data } from "@/content/home";
 
@@ -8,45 +7,67 @@ export function Comparison() {
   return (
     <Section id="comparison">
       <Container>
-        <SectionHeading
-          eyebrow="The Genii difference"
-          title={data.heading}
-        />
-        <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.35fr_1fr]">
-          {/* Comparison table */}
-          <Reveal className="overflow-hidden rounded-3xl border border-border/60">
-            <div className="grid grid-cols-[1.6fr_1fr] bg-muted/60 text-sm font-bold">
-              <div className="px-5 py-4 genii-gradient-text">Genii</div>
-              <div className="border-l border-border/60 px-5 py-4 text-muted-foreground">
-                Most providers
-              </div>
-            </div>
-            {data.rows.map((row, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-[1.6fr_1fr] border-t border-border/60 text-sm transition-colors duration-150 hover:bg-muted/40"
-              >
-                <div className="flex items-start gap-2.5 px-5 py-4">
-                  <Check
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
+          {/* Left — heading, description, benefit bullets */}
+          <Reveal>
+            <Eyebrow>The Genii difference</Eyebrow>
+            <h2 className="mt-4 text-3xl font-bold sm:text-4xl md:text-[2.75rem] md:leading-[1.08]">
+              {data.heading}
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
+              {data.description}
+            </p>
+            <ul className="mt-7 flex flex-col gap-3.5">
+              {data.benefits.map((b) => (
+                <li key={b} className="flex items-center gap-3 text-sm font-medium">
+                  <CircleCheck
                     aria-hidden
-                    className="mt-0.5 size-4 shrink-0 text-genii-red"
+                    className="size-5 shrink-0 text-genii-red"
                   />
-                  <span className="font-medium">{row.genii}</span>
-                </div>
-                <div className="flex items-start gap-2.5 border-l border-border/60 px-5 py-4 text-muted-foreground">
-                  <X aria-hidden className="mt-0.5 size-4 shrink-0 opacity-60" />
-                  <span>{row.others}</span>
-                </div>
-              </div>
-            ))}
+                  {b}
+                </li>
+              ))}
+            </ul>
           </Reveal>
 
-          {/* Explainer video */}
+          {/* Right — comparison table (Genii column highlighted) */}
           <Reveal delay={120}>
-            <YouTubeEmbed id={data.video.youtubeId} title={data.video.caption} />
-            <p className="mt-3 text-center text-sm font-medium text-muted-foreground">
-              {data.video.caption}
-            </p>
+            <div className="overflow-hidden rounded-3xl border border-border/60 bg-card">
+              <div className="grid grid-cols-[1.6fr_0.7fr_0.7fr]">
+                {/* header */}
+                <div className="border-b border-border/60" />
+                <div className="genii-gradient border-b border-border/60 px-2 py-4 text-center text-sm font-bold text-white">
+                  Genii
+                </div>
+                <div className="border-b border-l border-border/60 px-2 py-4 text-center text-sm font-bold text-muted-foreground">
+                  Most providers
+                </div>
+
+                {/* rows */}
+                {data.rows.map((row, i) => (
+                  <div key={i} className="contents">
+                    <div
+                      className={`px-4 py-3.5 text-sm font-medium ${i % 2 === 1 ? "bg-muted/30" : ""}`}
+                    >
+                      {row.genii}
+                    </div>
+                    <div
+                      className={`flex items-center justify-center bg-genii-red/[0.05] px-2 py-3.5 ${i % 2 === 1 ? "bg-genii-red/[0.09]" : ""}`}
+                    >
+                      <Check aria-label="Genii" className="size-5 text-genii-red" />
+                    </div>
+                    <div
+                      className={`flex items-center justify-center border-l border-border/60 px-2 py-3.5 ${i % 2 === 1 ? "bg-muted/30" : ""}`}
+                    >
+                      <X
+                        aria-label="Most providers"
+                        className="size-4.5 text-muted-foreground/40"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
       </Container>

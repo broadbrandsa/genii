@@ -10,11 +10,25 @@ export function ProductHero() {
     <Section className="relative overflow-hidden pt-16 pb-8 sm:pt-20">
       <div
         aria-hidden
+        className="bg-dot-grid pointer-events-none absolute inset-0 -z-10 opacity-70"
+        style={{
+          maskImage:
+            "radial-gradient(65% 55% at 50% 20%, #000 0%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(65% 55% at 50% 20%, #000 0%, transparent 75%)",
+        }}
+      />
+      <div
+        aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-2/3"
         style={{
           background:
             "radial-gradient(60% 60% at 50% 0%, rgba(243,112,53,0.09), transparent 65%)",
         }}
+      />
+      <div
+        aria-hidden
+        className="genii-orb left-1/2 top-0 size-96 -translate-x-1/2 bg-genii-orange/15"
       />
       <Container>
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">

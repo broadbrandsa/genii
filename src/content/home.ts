@@ -22,13 +22,9 @@ export const intelligenceVisual = {
   ],
   center: {
     title: "Genii Intelligence Layer",
+    stat: "1B Interactions Analysed",
+    statSub: "Across industries and verticals.",
   },
-  intelligence: [
-    "Agent Intelligence",
-    "Operational Intelligence",
-    "Customer Intelligence",
-    "Business Intelligence",
-  ],
   badges: ["Flexible Coverage", "Flexible Design", "Any Language"],
   actions: [
     {
@@ -46,6 +42,35 @@ export const intelligenceVisual = {
     {
       title: "Link Insight to Action",
       copy: "Turn insight into alerts, coaching and action.",
+    },
+  ],
+} as const;
+
+// Four layers of intelligence — a standalone block on the homepage.
+export const intelligenceTypes = {
+  heading: "Intelligence across every layer",
+  subheading:
+    "Genii turns the interactions you already have into intelligence — from the agent on the call to the boardroom.",
+  items: [
+    {
+      title: "Agent Intelligence",
+      copy: "Behaviours, performance, effectiveness, compliance and coaching opportunities.",
+      icon: "Users",
+    },
+    {
+      title: "Operational Intelligence",
+      copy: "FCR, repeat contacts, AHT drivers, process breakdowns and operational friction.",
+      icon: "Settings2",
+    },
+    {
+      title: "Customer Intelligence",
+      copy: "Sentiment, frustration, churn risk, brand conflict and experience breakdowns.",
+      icon: "Heart",
+    },
+    {
+      title: "Business Intelligence",
+      copy: "Contact reasons, revenue leakage, product, pricing and service-failure drivers.",
+      icon: "Building2",
     },
   ],
 } as const;
@@ -173,6 +198,14 @@ export const discoverCta = {
 
 export const comparison = {
   heading: "Where Other Providers Stop. We Continue.",
+  description:
+    "Most providers stop at detection and dashboards. Genii keeps going — to root cause, action and measurable business impact.",
+  benefits: [
+    "Explains the why, not just the what",
+    "Reveals root cause at scale",
+    "Turns insight into action and workflow",
+    "Connects every layer of intelligence",
+  ],
   video: {
     caption: "Watch the Genii explainer",
     youtubeId: "LQtBvp841b4",
@@ -299,4 +332,66 @@ export const leadForm = {
     "Other",
   ],
   privacy: "We respect your privacy. Your information is safe with us.",
+} as const;
+
+// Moving phrase band shown under the hero.
+export const ticker = [
+  "Root cause, not just scores",
+  "Evidence-linked insights",
+  "Agent intelligence",
+  "Operational intelligence",
+  "Customer intelligence",
+  "Business intelligence",
+  "Human + AI governance",
+  "Measurable business impact",
+  "1B+ interactions analysed",
+] as const;
+
+// Scroll-reveal statement (word-by-word).
+export const statement = {
+  eyebrow: "From guessing to knowing",
+  text: "Genii turns the interactions you already have into the intelligence to know what is driving performance — and exactly what to fix next.",
+} as const;
+
+// Alternating "platform in action" showcase rows. Visuals are branded
+// placeholders until final product imagery is supplied.
+export const showcase = {
+  heading: "See the intelligence in action",
+  subheading:
+    "From a single interaction to boardroom-ready insight — Genii connects the dots at every layer.",
+  rows: [
+    {
+      kicker: "Analyse",
+      title: "Root cause, several layers deep",
+      copy: "Genii doesn't stop at what happened. It segments every interaction into agent, operational, business and customer drivers, then traces the why through configurable root-cause trees.",
+      points: [
+        "Interactive root-cause analysis",
+        "Upstream & downstream drivers",
+        "Evidence linked to every finding",
+      ],
+      placeholder: "Root-Cause Analysis",
+    },
+    {
+      kicker: "Automate",
+      title: "AI QA across up to 100% of interactions",
+      copy: "Pre-configured indicators score FCR, repeats, dissatisfaction, compliance and more — with AI summaries and evidence, and humans routed in only where judgement is needed.",
+      points: [
+        "Ready-to-use AI QA indicators",
+        "Auto summaries & observability",
+        "Human exception management",
+      ],
+      placeholder: "AI QA & Indicators",
+    },
+    {
+      kicker: "Act",
+      title: "Insight linked to action and impact",
+      copy: "Turn findings into coaching, alerts and workflow — then quantify how behaviour change moves cost, risk, CX and revenue with board-ready reporting.",
+      points: [
+        "Coaching & workflow triggers",
+        "Executive, board-ready reporting",
+        "Business-impact quantification",
+      ],
+      placeholder: "Impact Dashboard",
+    },
+  ],
 } as const;

@@ -2,24 +2,36 @@
 
 import { useState } from "react";
 import { Play } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 /**
  * Click-to-load YouTube embed. Shows the video thumbnail with a branded play
  * button; the iframe is only injected (and starts playing) once the user clicks,
  * so no third-party player loads on initial page render.
+ *
+ * `bleed` drops the rounded corners / border / glow for edge-to-edge use.
  */
 export function YouTubeEmbed({
   id,
   title,
+  bleed = false,
+  poster,
 }: {
   id: string;
   title: string;
+  bleed?: boolean;
+  /** Custom poster image; falls back to the YouTube thumbnail. */
+  poster?: string;
 }) {
   const [playing, setPlaying] = useState(false);
+  const frame = cn(
+    "relative aspect-video w-full overflow-hidden",
+    bleed ? "" : "rounded-3xl border border-border/60 genii-glow",
+  );
 
   if (playing) {
     return (
-      <div className="relative aspect-video w-full overflow-hidden rounded-3xl border border-border/60 genii-glow">
+      <div className={frame}>
         <iframe
           className="absolute inset-0 h-full w-full"
           src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
@@ -36,12 +48,15 @@ export function YouTubeEmbed({
       type="button"
       onClick={() => setPlaying(true)}
       aria-label={title}
-      className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-3xl border border-border/60 bg-genii-charcoal genii-glow"
+      className={cn(
+        "group flex items-center justify-center bg-genii-charcoal",
+        frame,
+      )}
     >
       {/* Real video thumbnail */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+        src={poster ?? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
         alt=""
         aria-hidden
         loading="lazy"

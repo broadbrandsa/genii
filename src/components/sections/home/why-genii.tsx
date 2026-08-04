@@ -1,5 +1,6 @@
 import { Container, Section, SectionHeading } from "@/components/shared/section";
 import { Reveal } from "@/components/shared/reveal";
+import { Spotlight } from "@/components/shared/spotlight";
 import { iconMap } from "@/components/shared/icon-map";
 import { whyGenii as data } from "@/content/home";
 
@@ -21,7 +22,7 @@ export function WhyGenii() {
             const Icon = iconMap[card.icon];
             return (
               <Reveal key={card.title} delay={i * 70}>
-                <div className="card-lift group flex h-full flex-col rounded-3xl border border-border/60 bg-card p-6">
+                <Spotlight className="card-lift group flex h-full flex-col rounded-3xl border border-border/60 bg-card p-6">
                   <span className="flex size-11 items-center justify-center rounded-2xl bg-genii-red/10 transition-colors duration-150 group-hover:bg-genii-red/15">
                     {Icon && (
                       <Icon
@@ -34,7 +35,7 @@ export function WhyGenii() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {card.copy}
                   </p>
-                </div>
+                </Spotlight>
               </Reveal>
             );
           })}

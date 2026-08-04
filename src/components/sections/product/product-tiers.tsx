@@ -2,6 +2,7 @@ import { Check, Zap, Target } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/shared/section";
 import { CtaButton } from "@/components/shared/cta-button";
 import { Reveal } from "@/components/shared/reveal";
+import { Spotlight } from "@/components/shared/spotlight";
 import { tiers, journeyLine } from "@/content/products";
 
 export function ProductTiers() {
@@ -17,7 +18,8 @@ export function ProductTiers() {
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {tiers.map((tier, i) => (
             <Reveal key={tier.id} delay={i * 90} className="h-full">
-            <article
+            <Spotlight
+              as="article"
               id={tier.id}
               className="card-lift group flex h-full scroll-mt-24 flex-col rounded-3xl border border-border/60 bg-card p-6"
               style={{ borderTop: `3px solid ${tier.accent}` }}
@@ -83,7 +85,7 @@ export function ProductTiers() {
                   Talk to an Expert
                 </CtaButton>
               </div>
-            </article>
+            </Spotlight>
             </Reveal>
           ))}
         </div>

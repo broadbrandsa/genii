@@ -1,6 +1,6 @@
 import { Container, Section } from "@/components/shared/section";
 import { CtaButton } from "@/components/shared/cta-button";
-import { IntelligenceLayer } from "@/components/shared/intelligence-layer";
+import { HeroHeadline } from "@/components/sections/home/hero-headline";
 import { Reveal } from "@/components/shared/reveal";
 import { hero } from "@/content/home";
 import { ctas } from "@/content/site";
@@ -8,7 +8,17 @@ import { ctas } from "@/content/site";
 export function Hero() {
   return (
     <Section className="relative overflow-hidden pt-14 pb-10 sm:pt-20">
-      {/* soft warm background wash */}
+      {/* Layered background: dot texture + soft warm wash + brand orbs */}
+      <div
+        aria-hidden
+        className="bg-dot-grid pointer-events-none absolute inset-0 -z-10 opacity-70"
+        style={{
+          maskImage:
+            "radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%)",
+        }}
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70%]"
@@ -17,51 +27,40 @@ export function Hero() {
             "radial-gradient(70% 60% at 20% 0%, rgba(237,27,47,0.06), transparent 60%), radial-gradient(60% 50% at 90% 10%, rgba(251,169,57,0.08), transparent 65%)",
         }}
       />
+      <div
+        aria-hidden
+        className="genii-orb right-[-6rem] top-6 size-72 bg-genii-orange/25"
+      />
+      <div
+        aria-hidden
+        className="genii-orb left-[-8rem] top-40 size-80 bg-genii-pink/15"
+      />
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
-          <div className="flex flex-col items-start gap-6">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-genii-orange/25 bg-genii-orange/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-genii-red">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-pulse-ring rounded-full bg-genii-orange" />
-                  <span className="relative inline-flex size-2 rounded-full genii-gradient" />
-                </span>
-                {hero.eyebrow}
+        {/* Hero copy — centred, with the Intelligence Layer visual stacked below */}
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-genii-orange/25 bg-genii-orange/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-genii-red">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full animate-pulse-ring rounded-full bg-genii-orange" />
+                <span className="relative inline-flex size-2 rounded-full genii-gradient" />
               </span>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-                {hero.headline}
-                <br />
-                <span className="relative mt-2 inline-block genii-gradient-text-anim">
-                  {hero.statement}
-                  <span
-                    aria-hidden
-                    className="mt-2 block h-1 w-2/3 rounded-full genii-gradient"
-                  />
-                </span>
-              </h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-                {hero.supporting}
-              </p>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <CtaButton href={ctas.talkToExpert.href} size="lg">
-                  {ctas.talkToExpert.label}
-                </CtaButton>
-                <CtaButton href={ctas.bookDemo.href} variant="outline" size="lg">
-                  {ctas.bookDemo.label}
-                </CtaButton>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={200} className="lg:pl-4">
-            <div className="animate-float">
-              <IntelligenceLayer />
+              {hero.eyebrow}
+            </span>
+          </Reveal>
+          <HeroHeadline />
+          <Reveal delay={160}>
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              {hero.supporting}
+            </p>
+          </Reveal>
+          <Reveal delay={240}>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <CtaButton href={ctas.talkToExpert.href} size="lg">
+                {ctas.talkToExpert.label}
+              </CtaButton>
+              <CtaButton href={ctas.bookDemo.href} variant="outline" size="lg">
+                {ctas.bookDemo.label}
+              </CtaButton>
             </div>
           </Reveal>
         </div>

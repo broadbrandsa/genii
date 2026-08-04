@@ -6,6 +6,7 @@ import { ProductSubnav } from "@/components/sections/product/product-subnav";
 import { ProductEnvironment } from "@/components/sections/product/product-environment";
 import { ProductTiers } from "@/components/sections/product/product-tiers";
 import { ProductEnable } from "@/components/sections/product/product-enable";
+import { ProductStatsBand } from "@/components/sections/product/product-stats-band";
 import { ProductDiscover } from "@/components/sections/product/product-discover";
 import { ProductManagedServices } from "@/components/sections/product/product-managed-services";
 import { ProductIntelligenceLayers } from "@/components/sections/product/product-intelligence-layers";
@@ -32,6 +33,7 @@ export default function ProductsPage() {
         <ProductSubnav />
         <ProductEnvironment />
         <ProductTiers />
+        <ProductStatsBand />
         <ProductEnable />
         <ProductDiscover />
         <ProductManagedServices />
