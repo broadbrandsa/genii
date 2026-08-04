@@ -8,7 +8,7 @@ import { ProductTiers } from "@/components/sections/product/product-tiers";
 import { ProductStatsBand } from "@/components/sections/product/product-stats-band";
 import { ProductServicesRouter } from "@/components/sections/product/product-services-router";
 import { ProductUseCases } from "@/components/sections/product/product-use-cases";
-import { ProductFinalCta } from "@/components/sections/product/product-final-cta";
+import { ProductFeatureComparison } from "@/components/sections/product/product-feature-comparison";
 
 export const metadata: Metadata = {
   title: "Products — From Automated QA to Root-Cause Intelligence",
@@ -28,7 +28,7 @@ export default function ProductsPage() {
         <ProductStatsBand />
         <ProductServicesRouter />
         <ProductUseCases />
-        <ProductFinalCta />
+        <ProductFeatureComparison />
       </main>
       <SiteFooter />
     </>

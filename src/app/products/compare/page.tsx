@@ -8,7 +8,6 @@ import { ProductHowItWorks } from "@/components/sections/product/product-how-it-
 import { ProductGovernance } from "@/components/sections/product/product-governance";
 import { ProductProof } from "@/components/sections/product/product-proof";
 import { ProductFaq } from "@/components/sections/product/product-faq";
-import { ProductFinalCta } from "@/components/sections/product/product-final-cta";
 
 export const metadata: Metadata = {
   title: "Compare Genii Products — Features, Layers & FAQ",
@@ -28,7 +27,6 @@ export default function ComparePage() {
         <ProductGovernance />
         <ProductProof />
         <ProductFaq />
-        <ProductFinalCta />
       </main>
       <SiteFooter />
     </>

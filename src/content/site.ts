@@ -16,11 +16,17 @@ export type NavChild = {
   /** Optional column heading the item is grouped under in the dropdown. */
   group?: string;
 };
-export type NavItem = { label: string; href: string; children?: NavChild[] };
+export type NavQuickLink = { label: string; href: string };
+export type NavItem = {
+  label: string;
+  href: string;
+  children?: NavChild[];
+  /** Shortcut links shown along the bottom of the dropdown panel. */
+  quickLinks?: NavQuickLink[];
+};
 
 // Navigation principle: every item must lead somewhere real and distinct.
-// Solutions is a single link (not a dropdown) until dedicated solution pages
-// exist — a dropdown whose items all share one target only confuses people.
+// Solution names and summaries mirror the current live site so the IA matches.
 export const primaryNav: NavItem[] = [
   {
     label: "Products",
@@ -75,18 +81,58 @@ export const primaryNav: NavItem[] = [
         description: "Implementation & adoption support.",
       },
     ],
+    quickLinks: [
+      { label: "Compare features", href: "/products/compare" },
+      { label: "How Genii works", href: "/products/compare#how-it-works" },
+      { label: "FAQ", href: "/products/compare#faq" },
+    ],
   },
-  { label: "Solutions", href: "/#real-results" },
+  {
+    label: "Solutions",
+    href: "/solutions",
+    children: [
+      {
+        group: "By outcome",
+        label: "All Solutions",
+        href: "/solutions",
+        description: "Intelligence for the outcomes you own.",
+      },
+      {
+        group: "By outcome",
+        label: "Sales Performance",
+        href: "/solutions#sales-performance",
+        description:
+          "Turn sales conversations into more conversion and revenue.",
+      },
+      {
+        group: "By outcome",
+        label: "Customer Experience",
+        href: "/solutions#customer-experience",
+        description: "See what drives great CX — and what undermines it.",
+      },
+      {
+        group: "By outcome",
+        label: "Client Retentions",
+        href: "/solutions#client-retentions",
+        description: "Prevent churn and build long-term loyalty.",
+      },
+      {
+        group: "By outcome",
+        label: "Collections",
+        href: "/solutions#collections",
+        description: "The drivers behind successful, compliant recovery.",
+      },
+      {
+        group: "By outcome",
+        label: "Performance Management",
+        href: "/solutions#performance-management",
+        description: "Connect QA scores to behaviour and outcomes.",
+      },
+    ],
+  },
   { label: "Pricing", href: "/products#tiers" },
-  { label: "Why Genii", href: "/#why-genii" },
+  { label: "Why Genii", href: "/#statement" },
 ];
-
-// Quick links shown along the bottom of the Products dropdown panel.
-export const productQuickLinks = [
-  { label: "Compare features", href: "/products/compare" },
-  { label: "How Genii works", href: "/products/compare#how-it-works" },
-  { label: "FAQ", href: "/products/compare#faq" },
-] as const;
 
 export const ctas = {
   bookDemo: { label: "Book a Demo", href: "/#lead-form" },
@@ -114,6 +160,20 @@ export const footer = {
       ],
     },
     {
+      title: "Solutions",
+      links: [
+        { label: "All Solutions", href: "/solutions" },
+        { label: "Sales Performance", href: "/solutions#sales-performance" },
+        { label: "Customer Experience", href: "/solutions#customer-experience" },
+        { label: "Client Retentions", href: "/solutions#client-retentions" },
+        { label: "Collections", href: "/solutions#collections" },
+        {
+          label: "Performance Management",
+          href: "/solutions#performance-management",
+        },
+      ],
+    },
+    {
       title: "Explore",
       links: [
         { label: "Real Results", href: "/#real-results" },
@@ -126,7 +186,7 @@ export const footer = {
     {
       title: "Company",
       links: [
-        { label: "Why Genii?", href: "/#why-genii" },
+        { label: "Why Genii?", href: "/#statement" },
         { label: "Trusted Globally", href: "/#trusted" },
         { label: "Book a Demo", href: "/#lead-form" },
         { label: "Talk to an Expert", href: "/#lead-form" },

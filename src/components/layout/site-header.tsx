@@ -5,12 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "@/components/shared/logo";
 import { CtaButton } from "@/components/shared/cta-button";
-import {
-  primaryNav,
-  productQuickLinks,
-  ctas,
-  type NavChild,
-} from "@/content/site";
+import { primaryNav, ctas, type NavChild } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 /** Group dropdown children by their `group` label, preserving order. */
@@ -100,9 +95,22 @@ export function SiteHeader() {
                 </Link>
 
                 {menu === item.label && (
-                  <div className="absolute left-1/2 top-full z-50 w-[640px] -translate-x-1/2 pt-2">
+                  <div
+                    className={cn(
+                      "absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2",
+                      groupChildren(item.children).length > 1
+                        ? "w-[640px]"
+                        : "w-[340px]",
+                    )}
+                  >
                     <div className="overflow-hidden rounded-2xl border border-border/70 bg-popover shadow-xl">
-                      <div className="grid grid-cols-2 gap-x-2 p-3">
+                      <div
+                        className={cn(
+                          "grid gap-x-2 p-3",
+                          groupChildren(item.children).length > 1 &&
+                            "grid-cols-2",
+                        )}
+                      >
                         {groupChildren(item.children).map((group) => (
                           <div key={group.title}>
                             {group.title && (
@@ -130,19 +138,21 @@ export function SiteHeader() {
                           </div>
                         ))}
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-6 gap-y-1.5 border-t border-border/60 bg-muted/40 px-6 py-3.5">
-                        {productQuickLinks.map((q) => (
-                          <Link
-                            key={q.label}
-                            href={q.href}
-                            onClick={() => setMenu(null)}
-                            className="inline-flex items-center gap-1 text-xs font-semibold text-genii-red hover:underline"
-                          >
-                            {q.label}
-                            <ArrowRight aria-hidden className="size-3" />
-                          </Link>
-                        ))}
-                      </div>
+                      {item.quickLinks && (
+                        <div className="flex flex-wrap items-center gap-x-6 gap-y-1.5 border-t border-border/60 bg-muted/40 px-6 py-3.5">
+                          {item.quickLinks.map((q) => (
+                            <Link
+                              key={q.label}
+                              href={q.href}
+                              onClick={() => setMenu(null)}
+                              className="inline-flex items-center gap-1 text-xs font-semibold text-genii-red hover:underline"
+                            >
+                              {q.label}
+                              <ArrowRight aria-hidden className="size-3" />
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}

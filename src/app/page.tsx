@@ -5,7 +5,6 @@ import { IntelligenceFlow } from "@/components/sections/home/intelligence-flow";
 import { Ticker } from "@/components/shared/ticker";
 import { ExplainerVideo } from "@/components/sections/home/explainer-video";
 import { EnvironmentStrip } from "@/components/sections/home/environment-strip";
-import { WhyGenii } from "@/components/sections/home/why-genii";
 import { Statement } from "@/components/sections/home/statement";
 import { Comparison } from "@/components/sections/home/comparison";
 import { Testimonials } from "@/components/sections/home/testimonials";
@@ -26,7 +25,6 @@ export default function HomePage() {
         <Statement />
         <Comparison />
         <Testimonials />
-        <WhyGenii />
       </main>
       <SiteFooter />
     </>

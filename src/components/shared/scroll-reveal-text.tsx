@@ -15,6 +15,7 @@ export function ScrollRevealText({
   className,
   children,
   aside,
+  above,
 }: {
   text: string;
   eyebrow?: string;
@@ -23,6 +24,8 @@ export function ScrollRevealText({
   children?: ReactNode;
   /** Rendered in a right-hand column beside the text (lg+). */
   aside?: ReactNode;
+  /** Rendered inside the sticky viewport, above the animating text. */
+  above?: ReactNode;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -76,6 +79,7 @@ export function ScrollRevealText({
           )}
         >
           <div>
+          {above && <div className="mb-8 sm:mb-10">{above}</div>}
           {eyebrow && (
             <p
               className={cn(
