@@ -131,7 +131,30 @@ export const primaryNav: NavItem[] = [
     ],
   },
   { label: "Pricing", href: "/products#tiers" },
-  { label: "Why Genii", href: "/#statement" },
+  {
+    label: "Company",
+    href: "/why-genii",
+    children: [
+      {
+        group: "Company",
+        label: "Why Genii",
+        href: "/why-genii",
+        description: "Our story, what we believe and the impact we deliver.",
+      },
+      {
+        group: "Company",
+        label: "Interaction Intelligence",
+        href: "/interaction-intelligence",
+        description: "The layer between your interactions and your decisions.",
+      },
+      {
+        group: "Company",
+        label: "Contact Us",
+        href: "/contact",
+        description: "Book a no-obligation 30-minute introduction call.",
+      },
+    ],
+  },
 ];
 
 export const ctas = {
@@ -186,10 +209,11 @@ export const footer = {
     {
       title: "Company",
       links: [
-        { label: "Why Genii?", href: "/#statement" },
+        { label: "Why Genii", href: "/why-genii" },
+        { label: "Interaction Intelligence", href: "/interaction-intelligence" },
+        { label: "Contact Us", href: "/contact" },
         { label: "Trusted Globally", href: "/#trusted" },
         { label: "Book a Demo", href: "/#lead-form" },
-        { label: "Talk to an Expert", href: "/#lead-form" },
       ],
     },
   ],

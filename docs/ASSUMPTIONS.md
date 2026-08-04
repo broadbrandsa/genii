@@ -29,6 +29,23 @@ before launch.
   (`public/images/genii-logo.svg`). The logo must not be recreated, stretched or
   recoloured.
 
+## Live-site content still outstanding
+
+Audited against geniianalytics.com. These pages exist on the live site but are
+**not** in this build, because the copy needed to reproduce them faithfully has
+not been supplied and must not be invented:
+
+| Live page | Status here | What's needed |
+| --- | --- | --- |
+| `/our-team/` ("Our Sales Force", "Our Board Members") | **Not built** | Names, roles, bios and licensed headshots. |
+| `/category/clients-results/` (Client Results) | **Not built** | Approved case studies with client permission and defensible figures. |
+| Solution detail pages (×5) | Summaries only, on `/solutions` | Per-solution "How Genii Improves…", "What Genii Uncovered" and "The Result" copy plus case-study numbers. |
+| `/category/articles/`, `/category/videos/` (Resources) | **Not built** | Deferred by the client for now. |
+| `/interaction-intelligence-platform-demo/` | Handled by the lead form | Confirm whether a dedicated demo-booking page/embed is wanted. |
+
+Built from real live-site copy: `/why-genii`, `/interaction-intelligence`,
+`/contact`, the product family and the five solution summaries.
+
 ## Requires validation post-approval
 
 - Final copy sign-off across all sections.
