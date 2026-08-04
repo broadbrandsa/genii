@@ -180,6 +180,9 @@ export const footer = {
         { label: "Gen-AI Ultra", href: "/products/ultra" },
         { label: "Genii Discover", href: "/products#discover" },
         { label: "Managed Services", href: "/products#managed-services" },
+        // Completes the services trio. The header nav lists Discover, Managed
+        // Services and Enable together; the footer was missing Enable.
+        { label: "Genii Enable", href: "/products#enable" },
       ],
     },
     {
@@ -212,8 +215,12 @@ export const footer = {
         { label: "Why Genii", href: "/why-genii" },
         { label: "Interaction Intelligence", href: "/interaction-intelligence" },
         { label: "Contact Us", href: "/contact" },
-        { label: "Trusted Globally", href: "/#trusted" },
-        { label: "Book a Demo", href: "/#lead-form" },
+        // Removed: "Trusted Globally" (/#trusted) pointed at the rotating client
+        // logo strip — a decorative band, not somewhere to land, and it isn't a
+        // company page. "Book a Demo" (/#lead-form) pointed at the CTA panel
+        // sitting directly above these columns, so it scrolled the reader
+        // backwards to something already on screen, and the header already
+        // carries it.
       ],
     },
   ],
