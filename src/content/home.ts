@@ -1,7 +1,7 @@
 // Homepage content — from Genii Homepage Design Brief (17 June 2026).
 
 export const hero = {
-  eyebrow: "BEYOND AUTOMATED QA",
+  eyebrow: "ROOT CAUSE INTELLIGENCE FOR CONTACT CENTRES",
   headline: "We don't just score conversations.",
   statement:
     "We turn QA into agent, operational, customer and business intelligence.",
@@ -194,6 +194,46 @@ export const discoverCta = {
     "Not sure where to start? Discover what's really happening in your contact centre.",
   copy: "Genii Discover delivers a fast, low-effort insight assessment so you can see key issues, root causes and opportunities before you commit.",
   cta: { label: "Explore Discover", href: "/products/discover" },
+} as const;
+
+// "Where QA falls short" carousel — the gaps buyers recognise, each paired
+// with what they actually need.
+export const gaps = {
+  heading: "Where traditional QA falls short",
+  subheading:
+    "The gaps most contact centres live with — and what it takes to close them.",
+  items: [
+    {
+      id: "coverage",
+      label: "QA coverage is too small",
+      title: "Your QA Coverage Is Too Small to Protect the Business",
+      problem:
+        "Manual QA reviews a fraction of interactions. Risk, non-adherence, and poor behaviours go undetected until impact is visible.",
+      need: "Scaled visibility across interactions, without sacrificing accuracy, trust, or governance.",
+      image: "/images/qa-coverage-too-small.webp",
+      icon: "EyeOff",
+    },
+    {
+      id: "why",
+      label: "What happened, not why",
+      title: "You Can See What Happened, Not Why It Happened",
+      problem:
+        "Analytics tell you a step was missed or a score dropped. They don't explain what caused it.",
+      need: "Behavioural and contextual intelligence that explains decisions, effort, hesitation, and breakdowns inside real conversations.",
+      image: "/images/see-what-not-why.webp",
+      icon: "HelpCircle",
+    },
+    {
+      id: "signals",
+      label: "Signals, not solutions",
+      title: "Speech Analytics Generates Signals, Not Solutions",
+      problem:
+        "Topics and keywords are detected. But teams struggle to turn outputs into improvement.",
+      need: "A way to connect speech analytics signals to behaviour, process, and outcomes so intelligence drives change.",
+      image: "/images/speech-analytics-signals.webp",
+      icon: "Radio",
+    },
+  ],
 } as const;
 
 // Client testimonials. Quotes and attributions as supplied by Genii.

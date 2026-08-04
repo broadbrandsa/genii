@@ -2,8 +2,7 @@ import { Users, Settings2, Heart, Building2, type LucideIcon } from "lucide-reac
 import { ScrollRevealText } from "@/components/shared/scroll-reveal-text";
 import { Spotlight } from "@/components/shared/spotlight";
 import { SectionImage } from "@/components/shared/section-image";
-import { iconMap } from "@/components/shared/icon-map";
-import { statement, intelligenceTypes, whyGenii } from "@/content/home";
+import { statement, intelligenceTypes } from "@/content/home";
 
 // The four intelligence-layer blocks shown beneath the statement.
 const blocks = intelligenceTypes.items;
@@ -14,12 +13,6 @@ const blockIcons: Record<string, LucideIcon> = {
   Building2,
 };
 
-// Credibility blocks shown as a compact strip above the statement (the "1B
-// Interactions Analysed" stat is excluded — it headlines Real Results).
-const credibility = whyGenii.cards.filter(
-  (c) => c.title !== "1B Interactions Analysed",
-);
-
 export function Statement() {
   return (
     <section id="statement" className="relative bg-muted/40">
@@ -28,36 +21,6 @@ export function Statement() {
         <ScrollRevealText
           eyebrow={statement.eyebrow}
           text={statement.text}
-          above={
-            <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
-              {credibility.map((card) => {
-                const Icon = iconMap[card.icon];
-                return (
-                  <div
-                    key={card.title}
-                    className="group flex items-center gap-2.5 rounded-xl border border-border/60 bg-background/70 px-3 py-2.5"
-                  >
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-genii-red/10">
-                      {Icon && (
-                        <Icon
-                          aria-hidden
-                          className="size-3.5 text-genii-red transition-transform duration-150 group-hover:scale-110"
-                        />
-                      )}
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-xs font-bold leading-tight">
-                        {card.title}
-                      </span>
-                      <span className="block text-[11px] leading-snug text-muted-foreground">
-                        {card.copy}
-                      </span>
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          }
           aside={
             <SectionImage
               src="/images/microsoft-copilot-txZv4HQJRpE-unsplash.jpg"
