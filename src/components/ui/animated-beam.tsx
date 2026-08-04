@@ -12,6 +12,12 @@ export interface AnimatedBeamProps {
   toRef: RefObject<HTMLElement | null>;
   curvature?: number;
   reverse?: boolean;
+  /**
+   * Axis the highlight travels along. "horizontal" sweeps left→right (the
+   * original behaviour); "vertical" sweeps top→bottom, which is what reads as
+   * flow on beams that run down the page rather than across it.
+   */
+  orientation?: "horizontal" | "vertical";
   pathColor?: string;
   pathWidth?: number;
   pathOpacity?: number;
@@ -32,6 +38,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   toRef,
   curvature = 0,
   reverse = false,
+  orientation = "horizontal",
   duration = 5,
   delay = 0,
   pathColor = "gray",
@@ -49,19 +56,36 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   const [pathD, setPathD] = useState("");
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
 
-  const gradientCoordinates = reverse
-    ? {
-        x1: ["90%", "-10%"],
-        x2: ["100%", "0%"],
-        y1: ["0%", "0%"],
-        y2: ["0%", "0%"],
-      }
-    : {
-        x1: ["10%", "110%"],
-        x2: ["0%", "100%"],
-        y1: ["0%", "0%"],
-        y2: ["0%", "0%"],
-      };
+  // The highlight is a gradient swept across the SVG's own box, so the axis it
+  // travels on is set here rather than derived from the path.
+  const vertical = orientation === "vertical";
+  const gradientCoordinates = vertical
+    ? reverse
+      ? {
+          x1: ["0%", "0%"],
+          x2: ["0%", "0%"],
+          y1: ["90%", "-10%"],
+          y2: ["100%", "0%"],
+        }
+      : {
+          x1: ["0%", "0%"],
+          x2: ["0%", "0%"],
+          y1: ["10%", "110%"],
+          y2: ["0%", "100%"],
+        }
+    : reverse
+      ? {
+          x1: ["90%", "-10%"],
+          x2: ["100%", "0%"],
+          y1: ["0%", "0%"],
+          y2: ["0%", "0%"],
+        }
+      : {
+          x1: ["10%", "110%"],
+          x2: ["0%", "100%"],
+          y1: ["0%", "0%"],
+          y2: ["0%", "0%"],
+        };
 
   useEffect(() => {
     const updatePath = () => {
@@ -146,7 +170,9 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           initial={{ x1: "0%", x2: "0%", y1: "0%", y2: "0%" }}
           animate={
             reduceMotion
-              ? { x1: "0%", x2: "100%", y1: "0%", y2: "0%" }
+              ? vertical
+                ? { x1: "0%", x2: "0%", y1: "0%", y2: "100%" }
+                : { x1: "0%", x2: "100%", y1: "0%", y2: "0%" }
               : {
                   x1: gradientCoordinates.x1,
                   x2: gradientCoordinates.x2,

@@ -43,8 +43,11 @@ export function Testimonials() {
   return (
     <Section id="testimonials">
       <Container>
+        {/* Full container width, matching the comparison table above. This was
+            max-w-3xl for a tighter reading measure, but sitting narrower than the
+            neighbouring section read as a misalignment. */}
         <div
-          className="mx-auto max-w-3xl"
+          className="w-full"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}

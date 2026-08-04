@@ -8,6 +8,10 @@ import { RealResults } from "@/components/sections/home/real-results";
 import { showcase } from "@/content/home";
 
 /**
+ * Every beam runs `orientation="vertical"`: the highlight sweeps down the shared
+ * container rather than across each beam, so one wave travels down the whole
+ * chain, lighting each segment as it passes.
+ *
  * Wraps the Genii Intelligence Layer diagram, the "platform in action" rows and
  * the Real Results section in one relative container so a single animated beam
  * can flow from the hub circle, behind each placeholder, and into the Real
@@ -30,6 +34,7 @@ export function IntelligenceFlow() {
         containerRef={containerRef}
         fromRef={centerRef}
         toRef={phRefs[0]}
+        orientation="vertical"
         duration={5}
       />
       {/* placeholder → next placeholder */}
@@ -40,6 +45,7 @@ export function IntelligenceFlow() {
           containerRef={containerRef}
           fromRef={phRefs[i]}
           toRef={ref}
+          orientation="vertical"
           duration={5}
         />
       ))}
@@ -49,6 +55,7 @@ export function IntelligenceFlow() {
         containerRef={containerRef}
         fromRef={phRefs[phRefs.length - 1]}
         toRef={statRef}
+        orientation="vertical"
         duration={5}
       />
 
